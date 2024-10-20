@@ -7,12 +7,13 @@ import team2015 from "../assets/team-2015.jpg";
 import team2020 from "../assets/team-2020.jpg";
 import team2024 from "../assets/team-2024.jpg";
 import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
+import AutoplayVideo from "../components/AutoplayVideo.astro";
 ---
 
 <Layout transparentHeader>
     <Hero />
     <div class="row" id="below-hero">
-        <div class="recap-overview">
+        <div class="flexible">
             <h2>2024 Season Recap</h2>
             <p>
                 Get a sneak peak of what we do here at Generals Robotics, Team
@@ -21,20 +22,8 @@ import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
                 > account.
             </p>
         </div>
-        <div class="recap">
-            <div class="recap-video-container">
-                <iframe
-                    class="recap-video"
-                    width="1920"
-                    height="892"
-                    src="https://www.youtube.com/embed/UEHhuMCoeP8?autoplay=1&mute=1"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    loading="lazy"
-                    allowfullscreen></iframe>
-            </div>
+        <div class="flexible">
+            <AutoplayVideo videoId="UEHhuMCoeP8" width={1920} height={892} />
         </div>
     </div>
     <div class="row secondary" id="about-us">
@@ -113,27 +102,11 @@ import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
 </Layout>
 
 <style lang="scss">
-    .recap,
-    .recap-overview {
+    .flexible {
+        // Grow/shrink to fill the space evenly
         flex: 1;
-    }
-
-    .recap {
+        // Take a whole row when in a vertical format (mobile)
         width: 100%;
-    }
-
-    .recap-video-container {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 46.45833333%; // Aspect ratio: 892 (width) / 1920 (height)
-    }
-
-    .recap-video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
     }
 
     .row {
