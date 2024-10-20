@@ -1,0 +1,70 @@
+---
+// https://gist.github.com/sannajammeh/d1dfddc8c2538062de53714b07953cdf
+import type { ImageMetadata } from "astro";
+import { getImageBlurSvg } from "./image-blur-svg";
+import lqip from "lqip-modern";
+import path from "path";
+import {
+    Image as AstroImage,
+    type LocalImageProps,
+    type RemoteImageProps,
+} from "astro:assets";
+
+export type Props = LocalImageProps & {
+    placeholder?: boolean | undefined;
+};
+
+const src = await Astro.props.src;
+const srcMeta: ImageMetadata = "default" in src ? src.default : src;
+
+const placeholder = Astro.props.placeholder ?? true;
+
+let sourceLocation: string;
+if (import.meta.env.MODE === "development") {
+    sourceLocation = srcMeta.src.replace("/@fs", "").split("?")[0];
+} else {
+    const cwd = process.cwd();
+    // We need to resolve /_astro to <process.cwd>/dist/_astro
+    const location = path.join(cwd, "dist", srcMeta.src);
+    sourceLocation = location;
+}
+
+const blurData = await lqip(sourceLocation).then((r) => r.metadata);
+
+// Generate placeholder
+const svgUrl = `url("data:image/svg+xml;charset=utf-8,${getImageBlurSvg({
+    widthInt: srcMeta.width,
+    heightInt: srcMeta.height,
+    blurWidth: blurData.width,
+    blurHeight: blurData.height,
+    blurDataURL: blurData.dataURIBase64,
+    objectFit: "cover",
+})}")`;
+---
+
+<AstroImage
+    {...Astro.props}
+    style=`--placeholder:${svgUrl};${Astro.props.style}`
+    class:list={[{ placeholder: placeholder }, Astro.props["class:list"]]}
+/>
+
+<style lang="scss">
+    .placeholder {
+        background-image: var(--placeholder);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 1;
+        z-index: 1;
+    }
+</style>
+
+<script>
+    const preloadImages =
+        document.querySelectorAll<HTMLImageElement>(".preload");
+    for (const image of preloadImages) {
+        image.onload = () => {
+            image.style.setProperty("--placeholder", null);
+        };
+    }
+</script>

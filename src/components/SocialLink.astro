@@ -1,0 +1,63 @@
+---
+import { type Icon } from "@fortawesome/fontawesome-svg-core";
+
+export interface Props {
+    icon: Icon;
+    href: string;
+    title: string;
+}
+
+const { icon, href, title } = Astro.props;
+---
+
+<a
+    href={href}
+    title={title}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-link"
+>
+    <Fragment set:html={icon.html} />
+</a>
+
+<style>
+    .social-link {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        flex-shrink: 0;
+
+        height: 40px;
+        width: 40px;
+
+        border: 2px solid var(--accent);
+        color: var(--accent);
+        border-radius: 100%;
+        transition:
+            color,
+            background-color 0.15s ease-in-out;
+    }
+
+    .social-link :global(svg) {
+        width: 24px;
+        height: 24px;
+    }
+
+    .social-link:hover {
+        background-color: var(--accent);
+        color: var(--bg-secondary);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .social-link {
+            border-color: var(--col-body);
+            color: var(--col-body);
+        }
+
+        .social-link:hover {
+            background-color: var(--col-body);
+            color: var(--bg-secondary);
+        }
+    }
+</style>

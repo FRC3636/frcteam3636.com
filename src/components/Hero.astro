@@ -1,0 +1,109 @@
+---
+import Image from "../components/Image.astro";
+import hero from "../assets/robot-hero.jpg";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+
+const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
+---
+
+<div class="hero">
+    <Image
+        src={hero}
+        widths={[900, 1200, 1400, 1800, hero.width]}
+        alt=`Generals Robotics' robot "Sun Tzu," made for the 2024 FIRST Robotics Competition Season`
+        sizes="100vw"
+        class="hero-img"
+    />
+    <div class="hero-overlay">
+        <div class="hero-details">
+            <h1>The Official Website of Generals Robotics</h1>
+        </div>
+        <a class="hero-scroll" href="#below-hero">
+            <p class="callout">Learn More</p>
+            <div class="scroll-arrow">
+                <Fragment set:html={chevronDown.html} />
+            </div>
+        </a>
+    </div>
+</div>
+
+<style lang="scss">
+    .hero {
+        position: relative;
+        display: contents;
+    }
+
+    .hero,
+    h1 {
+        color: var(--col-white);
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            transparent,
+            transparent,
+            transparent,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.8)
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .hero-details {
+        padding: 1rem;
+        padding-top: 5vw;
+    }
+
+    .hero-scroll {
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-transform: uppercase;
+    }
+
+    .hero-scroll .scroll-arrow {
+        font-size: 2rem;
+        animation: scroll-nag 3s infinite;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    // helps to let visitors know that there's other content below the fold!
+    @keyframes scroll-nag {
+        0% {
+            transform: translateY(0);
+        }
+        25% {
+            transform: translateY(0.5rem);
+        }
+        50% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+    // This script is used to make the hero scroll button scroll to the next section
+    const below = document.querySelector("#below-hero");
+    const heros = document.querySelectorAll(".hero-scroll");
+    for (const hero of heros) {
+        hero.addEventListener("click", (e) => {
+            e.preventDefault();
+            below?.scrollIntoView({ behavior: "smooth", block: "end" });
+        });
+    }
+</script>

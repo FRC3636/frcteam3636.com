@@ -1,0 +1,153 @@
+---
+import Image from "./Image.astro";
+import logo from "../assets/logo.svg?raw";
+import LogoLink from "./LogoLink.astro";
+import SocialLink from "./SocialLink.astro";
+
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import {
+    faInstagram,
+    faTiktok,
+    faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+---
+
+<footer>
+    <div class="organization-info">
+        <LogoLink footer>Generals Robotics</LogoLink>
+        <div class="social-links">
+            <SocialLink
+                icon={icon(faInstagram)}
+                title="Follow us on Instagram!"
+                href="https://www.instagram.com/frcteam3636"
+            />
+            <SocialLink
+                icon={icon(faTiktok)}
+                title="Follow us on TikTok!"
+                href="https://www.tiktok.com/@frcteam3636"
+            />
+            <SocialLink
+                icon={icon(faYoutube)}
+                title="Watch us on YouTube!"
+                href="https://www.youtube.com/@FRCTeam3636"
+            />
+        </div>
+    </div>
+
+    <div class="link-column">
+        <h2>Resources</h2>
+        <ul>
+            <li>
+                <a href="https://www.thebluealliance.com/team/3636">
+                    The Blue Alliance profile
+                </a>
+            </li>
+            <li>
+                <a href="https://www.twitch.tv/firstwa_red2">
+                    Watch our matches live
+                </a>
+            </li>
+            <li>
+                <a href="mailto:frcteam3636@gmail.com">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="link-column">
+        <h2>Our Work in 2024</h2>
+        <ul>
+            <li>
+                <a
+                    href="https://www.chiefdelphi.com/t/frc-team-3636-generals-robotics-2024-build-thread/442713?u=3636_generals"
+                >
+                    Build Thread
+                </a>
+            </li>
+            <li>
+                <a href="https://photos.app.goo.gl/9BwecLuf112J69259">
+                    Build Season Photos
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/FRC3636">GitHub Profile</a>
+            </li>
+            <li>
+                <a
+                    href="https://cad.onshape.com/documents/e096f9b78cea17585c8f2569/w/9374e4a5fd9324863d8a9f43/e/0eae4b155c3bfb1845bd5e8e?renderMode=0&uiState=65a4c75a3bf5b4311baa84d8"
+                >
+                    Onshape CAD Model
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+<style lang="scss">
+    footer {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 2.5rem 0;
+        gap: 2rem;
+        justify-content: center;
+        background-color: var(--bg-secondary);
+    }
+
+    .organization-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: c;
+        gap: 0.25rem;
+        // This is useful when the width is actually 100%.
+        text-align: center;
+        // Put the organization's logo on its own line by default.
+        // If we're on desktop we can use a media query to put everything on one line.
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .organization-info {
+            width: auto;
+        }
+    }
+
+    .social-links {
+        display: flex;
+        gap: 0.75rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .link-column {
+        margin-top: 0.5rem;
+    }
+
+    .link-column h2 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-weight: bold;
+        font-size: 1rem;
+        text-align: left;
+        margin: 0;
+    }
+
+    .link-column ul {
+        list-style-type: none;
+        font-size: 0.8rem;
+        padding: 0;
+        margin: 0;
+    }
+    .link-column li {
+        margin-top: 0.5rem;
+    }
+
+    .link-column a {
+        text-decoration-thickness: 0.1em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .link-column h2 {
+            color: var(--col-white);
+        }
+    }
+</style>

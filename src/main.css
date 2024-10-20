@@ -1,0 +1,131 @@
+@font-face {
+    font-family: Loos;
+    src: url(/fonts/LoosLCGeo-Variable-Web.woff2);
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: normal;
+    src: url(/fonts/Montserrat-VF.woff2);
+    font-display: swap;
+}
+
+:root {
+    --col-white: #ffffff;
+    --col-dark: #0a0a0a;
+    --col-black: black;
+    --col-lgray: #eeeeee;
+    --col-dgray: #2d2a2b;
+    --col-blue: #1d48a3;
+    --font-heading: "Loos", sans-serif;
+    --font-subheading: "Montserrat", sans-serif;
+    --font-body: "Montserrat", sans-serif;
+    color-scheme: light dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+
+    --bg: var(--col-white);
+    --bg-secondary: var(--col-lgray);
+    --col-body: var(--col-dgray);
+    --primary: var(--col-black);
+    --accent: var(--col-blue);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: var(--col-black);
+        --bg-secondary: var(--col-dark);
+        --primary: var(--col-white);
+        --col-body: var(--col-lgray);
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+html,
+body {
+    font-size: 1.25em;
+}
+
+body {
+    font-family: var(--font-body);
+    max-width: 100%;
+    background-color: var(--bg);
+    color: var(--col-body);
+}
+
+a {
+    color: currentColor;
+    transition: text-decoration 0.2s ease-in-out;
+}
+
+a:hover {
+    text-decoration: var(--col-blue) underline;
+}
+
+@media (prefers-color-scheme: dark) {
+    a {
+        text-decoration-color: var(--accent);
+    }
+    a:hover {
+        text-decoration-color: var(--col-white);
+    }
+}
+
+h1,
+h2 {
+    font-family: var(--font-heading);
+    text-align: center;
+    font-weight: 1000;
+    text-transform: uppercase;
+    margin: 1rem;
+    color: var(--primary);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+}
+
+figcaption {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0.5rem;
+}
+
+.callout {
+    font-size: 0.75rem;
+    margin: 0 0;
+}
+
+.svg-inline--fa {
+    overflow: visible;
+    box-sizing: content-box;
+    display: inline-block;
+    height: 1em;
+    vertical-align: -0.125em;
+}

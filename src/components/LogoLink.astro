@@ -1,0 +1,52 @@
+---
+import logo from "../assets/logo.svg?raw";
+
+export interface Props {
+    footer?: boolean;
+}
+
+const { footer } = Astro.props;
+---
+
+<a href="/" class:list={["logo", { footer }]}>
+    <Fragment set:html={logo} />
+    <span>
+        <slot />
+    </span>
+</a>
+
+<style lang="scss" }>
+    a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        color: var(--accent);
+        font-family: var(--font-heading);
+        font-weight: 1000;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    span {
+        // Optical centering
+        transform: translateY(2px);
+    }
+
+    // just scale the SVG down to 60px
+    .logo :global(svg) {
+        width: 60px;
+        color: var(--col-white);
+    }
+    .logo.footer :global(svg) {
+        width: 40px;
+        color: var(--accent);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        a,
+        .logo.footer :global(svg) {
+            color: var(--col-white);
+        }
+    }
+</style>

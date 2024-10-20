@@ -1,0 +1,96 @@
+---
+import { SEO } from "astro-seo";
+import "modern-normalize/modern-normalize.css";
+import "../main.css";
+import { seoConfig, manifest } from "../../utils/seo.ts";
+import "modern-normalize/modern-normalize.css";
+import "../main.css";
+
+export interface Props {
+    title?: string;
+    description?: string;
+    disableIndexing?: boolean;
+    ogTitle?: string;
+}
+
+const title = Astro.props.title
+    ? `${Astro.props.title} — ${seoConfig.siteName}`
+    : seoConfig.siteName;
+const description = Astro.props.description ?? seoConfig.description;
+const disableIndexing = Boolean(Astro.props.disableIndexing);
+const ogTitle = Astro.props.ogTitle ?? title;
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+
+library.add(fas, fab);
+---
+
+<html lang="en">
+    <head>
+        <SEO
+            title={title}
+            description={description}
+            noindex={disableIndexing}
+            nofollow={disableIndexing}
+            openGraph={{
+                basic: {
+                    title: ogTitle || title,
+                    type: "website",
+                    image: seoConfig.image.url,
+                },
+                image: {
+                    width: seoConfig.image.width,
+                    height: seoConfig.image.height,
+                    alt: seoConfig.image.alt,
+                },
+                optional: {
+                    siteName: seoConfig.siteName,
+                    description,
+                },
+            }}
+            charset="utf-8"
+        />
+        <link
+            rel="preload"
+            href="/fonts/LoosLCGeo-Variable-Web.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/Montserrat-VF.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="512x512"
+            href="/maskable_icon_x512.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="/maskable_icon_x96.png"
+        />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content={manifest.theme_color} />
+        <link
+            rel="alternate"
+            type="application/json+oembed"
+            href=`${seoConfig.baseURL}/oembed.json`
+        />
+        <link
+            rel="canonical"
+            href=`${seoConfig.baseURL}${Astro.url.pathname}`
+        />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
