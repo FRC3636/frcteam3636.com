@@ -8,6 +8,8 @@ export interface Props {
 const { videoId, width, height } = Astro.props;
 
 const url = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1`;
+
+const aspectRatioPercent = `${(height / width) * 100}%`;
 ---
 
 <div class="video-container">
@@ -33,6 +35,23 @@ const url = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1
             allowfullscreen></iframe>
     </template>
 </div>
+
+<style lang="scss" define:vars={{ aspectRatioPercent }}>
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: var(--aspectRatioPercent);
+        background-color: black;
+    }
+
+    .video-player {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
 <script>
     // Lazy load the video by adding the iframe when it's in view.
@@ -62,20 +81,3 @@ const url = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1
         observer.observe(container);
     }
 </script>
-
-<style lang="scss">
-    .video-container {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 46.45833333%; // Aspect ratio: 892 (width) / 1920 (height)
-        background-color: black;
-    }
-
-    .video-player {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-    }
-</style>
