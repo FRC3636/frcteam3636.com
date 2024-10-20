@@ -8,7 +8,7 @@ export interface Props {
 const { footer } = Astro.props;
 ---
 
-<a href="/" class:list={["logo", { footer }]}>
+<a href="/" title="Homepage" class:list={["logo", { footer }]}>
     <Fragment set:html={logo} />
     <span>
         <slot />
