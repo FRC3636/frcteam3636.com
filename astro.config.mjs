@@ -15,7 +15,7 @@ export default defineConfig({
         //     },
         // }),
     ],
-    site: "https://frc3636.github.io",
+    site: "https://3636.team",
     vite: {
         plugins: [
             VitePWA({
