@@ -72,6 +72,12 @@ const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
         animation: scroll-nag 3s infinite;
     }
 
+    @media screen and (prefers-reduced-motion: reduce) {
+        .hero-scroll .scroll-arrow {
+            animation: none;
+        }
+    }
+
     .hero-img {
         width: 100%;
         height: 100vh;
@@ -102,7 +108,7 @@ const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
     for (const hero of heros) {
         hero.addEventListener("click", (e) => {
             e.preventDefault();
-            below?.scrollIntoView({ behavior: "smooth", block: "end" });
+            below?.scrollIntoView({ block: "end" });
         });
     }
 </script>
