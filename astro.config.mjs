@@ -15,7 +15,7 @@ export default defineConfig({
         //     },
         // }),
     ],
-    site: "https://3636.team",
+    site: "https://frcteam3636.com",
     vite: {
         plugins: [
             VitePWA({
