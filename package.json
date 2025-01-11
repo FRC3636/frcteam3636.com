@@ -11,19 +11,19 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@divriots/jampack": "^0.30.0",
-        "@fortawesome/fontawesome-svg-core": "^6.6.0",
-        "@fortawesome/free-brands-svg-icons": "^6.6.0",
-        "@fortawesome/free-solid-svg-icons": "^6.6.0",
-        "@sentry/astro": "^8.34.0",
-        "astro": "^4.16.6",
+        "@divriots/jampack": "^0.33.0",
+        "@fortawesome/fontawesome-svg-core": "^6.7.2",
+        "@fortawesome/free-brands-svg-icons": "^6.7.2",
+        "@fortawesome/free-solid-svg-icons": "^6.7.2",
+        "@sentry/astro": "^8.48.0",
+        "astro": "^5.1.5",
         "astro-seo": "^0.8.4",
-        "lqip-modern": "^2.1.0",
+        "lqip-modern": "^2.2.1",
         "modern-normalize": "^3.0.1",
-        "preact": "^10.24.3",
-        "sass": "^1.80.3",
+        "preact": "^10.25.4",
+        "sass": "^1.83.1",
         "sharp": "^0.33.5",
-        "vite-plugin-pwa": "^0.20.5"
+        "vite-plugin-pwa": "^0.21.1"
     },
     "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }

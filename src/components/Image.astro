@@ -44,7 +44,9 @@ const svgUrl = `url("data:image/svg+xml;charset=utf-8,${getImageBlurSvg({
 
 <AstroImage
     {...Astro.props}
-    style=`--placeholder:${svgUrl};${Astro.props.style ?? ""}`
+    style={placeholder
+        ? `--placeholder:${svgUrl};${Astro.props.style ?? ""}`
+        : undefined}
     class:list={[{ placeholder: placeholder }, Astro.props["class:list"]]}
 />
 

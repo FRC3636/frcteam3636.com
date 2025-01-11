@@ -68,7 +68,9 @@ a {
 }
 
 a:hover {
-    text-decoration: var(--col-blue) underline;
+    text-decoration: underline;
+    text-decoration-color: var(--col-blue);
+    color: var(--col-blue);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -128,4 +130,10 @@ figcaption {
     display: inline-block;
     height: 1em;
     vertical-align: -0.125em;
+}
+
+.inline-image {
+    display: inline-block;
+    height: 1em;
+    margin: 0 5px;
 }
