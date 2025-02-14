@@ -79,6 +79,7 @@ a:hover {
     }
 
     a:hover {
+        color: currentColor;
         text-decoration-color: var(--col-white);
     }
 }

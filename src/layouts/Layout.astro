@@ -15,7 +15,9 @@ const { header = "normal" } = Astro.props;
 
 <Base {...Astro.props}>
     <header id="page-header" data-style={header}>
-        <LogoLink />
+        <LogoLink>Generals Robotics</LogoLink>
+        <a href="/">Home</a>
+        <a href="/auction">Auction</a>
     </header>
 
     <slot />
@@ -24,36 +26,43 @@ const { header = "normal" } = Astro.props;
 </Base>
 
 <style lang="scss">
-  header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 0;
+    header {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 100px;
+        padding: 0 2rem;
+        gap: 2rem;
 
-    height: 100px;
+        position: sticky;
+        top: 0;
 
-    background-color: var(--accent);
-    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+        background-color: var(--accent);
+        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+        font-family: var(--font-heading), sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
 
-    z-index: 100;
+        color: var(--col-white);
 
-    &[data-style="transparent"] {
-      position: fixed;
-      left: 0;
-      right: 0;
-      transition: background-color 0.5s ease-out;
+        z-index: 100;
 
-      &:not(.scrolled) {
-        background-color: rgba(0, 0, 0, 0.5);
-      }
+        &[data-style="transparent"] {
+            position: fixed;
+            left: 0;
+            right: 0;
+            transition: background-color 0.5s ease-out;
+
+            &:not(.scrolled) {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        a {
+            color: var(--col-white);
+            text-decoration-color: currentColor;
+        }
     }
-  }
-
-  a :global(svg) {
-    width: 60px;
-    color: white;
-  }
 </style>
 
 <script>
@@ -64,4 +73,3 @@ const { header = "normal" } = Astro.props;
         header.classList.toggle("scrolled", window.scrollY > 10);
     });
 </script>
-
