@@ -9,12 +9,13 @@ import team2024 from "../assets/team-2024.jpg";
 import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
 import AutoplayVideo from "../components/AutoplayVideo.astro";
 import Section from "../components/Section.astro";
+import Column from "../components/Column.astro";
 ---
 
 <Layout header="transparent">
     <Hero />
-    <Section id="below-hero" direction="row">
-        <div class="flexible">
+    <Section layout="row" align="spaced" id="below-hero">
+        <Column class="flexible">
             <h2>2024 Season Recap</h2>
             <p>
                 Get a sneak peak of what we do here at Generals Robotics, Team
@@ -22,12 +23,12 @@ import Section from "../components/Section.astro";
                     href="https://www.youtube.com/@FRCTeam3636">YouTube</a
                 > account.
             </p>
-        </div>
+        </Column>
         <div class="flexible">
             <AutoplayVideo videoId="UEHhuMCoeP8" width={1920} height={892} />
         </div>
     </Section>
-    <Section theme="secondary" direction="row" id="about-us">
+    <Section theme="secondary" layout="row" align="spaced" id="about-us">
         <div>
             <Image
                 src={aboutUsFlavor}
@@ -37,7 +38,7 @@ import Section from "../components/Section.astro";
                 sizes="30vw"
             />
         </div>
-        <div class="about-us-text">
+        <Column class="about-us-text">
             <h2>About Us</h2>
             <p>
                 Generals Robotics, assigned the team number of “3636,” was
@@ -57,11 +58,11 @@ import Section from "../components/Section.astro";
                 securing internships and grants to building a network of
                 experienced mentors in the engineering industry.
             </p>
-        </div>
+        </Column>
     </Section>
     <Section>
         <h2>Over the Years</h2>
-        <div class="team-history-gallery">
+        <Column class="team-history-gallery">
             <figure>
                 <Image
                     src={team2011}
@@ -98,7 +99,7 @@ import Section from "../components/Section.astro";
                 />
                 <figcaption>2024 Oregon State Fairgrounds Event</figcaption>
             </figure>
-        </div>
+        </Column>
     </Section>
 </Layout>
 
