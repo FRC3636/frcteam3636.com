@@ -1,0 +1,15 @@
+---
+import type { IconDefinition } from "@fortawesome/free-brands-svg-icons";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+
+type IconWidth = "fixed" | "variable";
+interface Props {
+    symbol: IconDefinition;
+    width?: IconWidth;
+}
+
+const { symbol, width = "fixed" } = Astro.props;
+const theIcon = icon(symbol);
+---
+
+<Fragment set:html={theIcon.html} />

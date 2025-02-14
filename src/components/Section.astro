@@ -1,0 +1,67 @@
+---
+import { type HTMLAttributes } from "astro/types";
+
+type Theme = "primary" | "secondary";
+type Align = "centered" | "spaced";
+type Layout = "row" | "column";
+interface Props extends HTMLAttributes<"div"> {
+    /**  Controls the background color of the section. */
+    theme?: Theme;
+    align?: Align;
+    layout?: Layout;
+}
+
+const {
+    theme = "primary",
+    align = "centered",
+    layout = "column",
+    ...rest
+} = Astro.props;
+---
+
+<div
+    class="row"
+    data-theme={theme}
+    data-align={align}
+    data-layout={layout}
+    {...rest}
+>
+    <slot />
+</div>
+
+<style lang="scss">
+    .row {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+
+        // Theming
+
+        &[data-theme="secondary"] {
+            background-color: var(--bg-secondary);
+        }
+
+        &[data-layout="row"] {
+            flex-direction: row;
+            align-items: start;
+            gap: 2rem;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
+        }
+
+        &[data-align="spaced"] {
+            justify-content: space-around;
+        }
+
+        // Children
+
+        :global(p) {
+            max-width: 50ch;
+        }
+    }
+</style>

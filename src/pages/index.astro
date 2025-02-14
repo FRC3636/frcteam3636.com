@@ -8,11 +8,12 @@ import team2020 from "../assets/team-2020.jpg";
 import team2024 from "../assets/team-2024.jpg";
 import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
 import AutoplayVideo from "../components/AutoplayVideo.astro";
+import Section from "../components/Section.astro";
 ---
 
-<Layout transparentHeader>
+<Layout header="transparent">
     <Hero />
-    <div class="row" id="below-hero">
+    <Section id="below-hero" direction="row">
         <div class="flexible">
             <h2>2024 Season Recap</h2>
             <p>
@@ -25,8 +26,8 @@ import AutoplayVideo from "../components/AutoplayVideo.astro";
         <div class="flexible">
             <AutoplayVideo videoId="UEHhuMCoeP8" width={1920} height={892} />
         </div>
-    </div>
-    <div class="row secondary" id="about-us">
+    </Section>
+    <Section theme="secondary" direction="row" id="about-us">
         <div>
             <Image
                 src={aboutUsFlavor}
@@ -57,8 +58,8 @@ import AutoplayVideo from "../components/AutoplayVideo.astro";
                 experienced mentors in the engineering industry.
             </p>
         </div>
-    </div>
-    <div class="row always-vertical">
+    </Section>
+    <Section>
         <h2>Over the Years</h2>
         <div class="team-history-gallery">
             <figure>
@@ -98,10 +99,11 @@ import AutoplayVideo from "../components/AutoplayVideo.astro";
                 <figcaption>2024 Oregon State Fairgrounds Event</figcaption>
             </figure>
         </div>
-    </div>
+    </Section>
 </Layout>
 
 <style lang="scss">
+    // Turns into a full row on mobile
     .flexible {
         // Grow/shrink to fill the space evenly
         flex: 1;
@@ -109,59 +111,23 @@ import AutoplayVideo from "../components/AutoplayVideo.astro";
         width: 100%;
     }
 
-    .row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        padding: 2rem;
-        gap: 2rem;
-    }
-
-    .row.secondary {
-        background-color: var(--bg-secondary);
-    }
-
-    .row.always-vertical {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
     h1 {
         color: var(--col-white);
-    }
-
-    .row div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .row p {
-        max-width: 50ch;
     }
 
     .team-img,
     .about-us-img {
         width: 35vw;
         height: auto;
+
+        @media (max-width: 768px) {
+            width: 60vw;
+        }
     }
 
-    .row div.team-history-gallery {
+    .team-history-gallery {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1rem;
-    }
-
-    @media (max-width: 1000px) {
-        .row {
-            flex-direction: column;
-        }
-
-        .team-img,
-        .about-us-img {
-            width: 60vw;
-        }
     }
 </style>

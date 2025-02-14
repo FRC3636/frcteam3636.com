@@ -1,0 +1,30 @@
+---
+import Layout, { type Props as LayoutProps } from "./Layout.astro";
+
+interface Props extends LayoutProps {}
+
+const { ...rest } = Astro.props;
+---
+
+<Layout {...rest}>
+    <main>
+        <slot />
+    </main>
+</Layout>
+
+<style lang="scss">
+    main {
+        margin-bottom: 3rem;
+
+        :global(h1) {
+            margin: 3rem 1rem 0 1rem;
+            @media (max-width: 600px) {
+                font-size: 2.5rem;
+            }
+        }
+
+        :global(p) {
+            margin-bottom: 1rem;
+        }
+    }
+</style>

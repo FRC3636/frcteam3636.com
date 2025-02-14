@@ -1,8 +1,9 @@
 ---
-import { type Icon } from "@fortawesome/fontawesome-svg-core";
+import type { IconDefinition } from "@fortawesome/free-brands-svg-icons";
+import Icon from "./Icon.astro"
 
 export interface Props {
-    icon: Icon;
+    icon: IconDefinition;
     href: string;
     title: string;
 }
@@ -17,7 +18,7 @@ const { icon, href, title } = Astro.props;
     rel="noopener noreferrer"
     class="social-link"
 >
-    <Fragment set:html={icon.html} />
+    <Icon symbol={icon} />
 </a>
 
 <style>
@@ -37,11 +38,6 @@ const { icon, href, title } = Astro.props;
         transition:
             color,
             background-color 0.15s ease-in-out;
-    }
-
-    .social-link :global(svg) {
-        width: 24px;
-        height: 24px;
     }
 
     .social-link:hover {
