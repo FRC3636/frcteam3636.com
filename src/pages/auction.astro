@@ -8,14 +8,18 @@ import {
     faCalendar,
     faLocationDot,
     faTicket,
-    faUtensils
+    faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import Detail from "../components/Detail.astro";
 import DetailsList from "../components/DetailsList.astro";
 import Button from "../components/Button.astro";
 ---
 
-<Article>
+<Article
+    title="Auction and Dinner"
+    description="Please join us for an evening of dinner and fun to support\
+                Grant High School’s FIRST Robotics Team."
+>
     <h1>Auction and Dinner</h1>
     <Section>
         <DetailsList>
@@ -34,10 +38,15 @@ import Button from "../components/Button.astro";
             </Detail>
         </DetailsList>
         <div class="buttons">
-            <Button theme="primary" href="https://www.schoolpay.com/pay/for/Robotics-2025-Fundraising-Auction-Ticket/SeeznZ0">
+            <Button
+                theme="primary"
+                href="https://www.schoolpay.com/pay/for/Robotics-2025-Fundraising-Auction-Ticket/SeeznZ0"
+            >
                 Sign up
             </Button>
-            <Button href="https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ">
+            <Button
+                href="https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ"
+            >
                 Donate
             </Button>
         </div>
@@ -46,12 +55,10 @@ import Button from "../components/Button.astro";
         <div>
             <h2>About the event</h2>
             <p>
-                Please join us for an evening of dinner and fun to support
-                Grant High School’s FIRST Robotics Team.
+                Please join us for an evening of dinner and fun to support Grant
+                High School’s FIRST Robotics Team.
             </p>
-            <p>
-                Appetizers and dinner are included with your ticket.
-            </p>
+            <p>Appetizers and dinner are included with your ticket.</p>
         </div>
     </Section>
 </Article>

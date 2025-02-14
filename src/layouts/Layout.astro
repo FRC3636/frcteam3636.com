@@ -10,10 +10,10 @@ export interface Props extends BaseProps {
     header?: HeaderTheme;
 }
 
-const { header = "normal" } = Astro.props;
+const { header = "normal", ...rest } = Astro.props;
 ---
 
-<Base {...Astro.props}>
+<Base {...rest}>
     <header id="page-header" data-style={header}>
         <LogoLink>Generals Robotics</LogoLink>
         <a href="/">Home</a>
