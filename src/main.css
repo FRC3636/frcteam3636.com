@@ -120,6 +120,10 @@ figcaption {
     margin: 0.5rem;
 }
 
+iframe {
+    border: none;
+}
+
 .callout {
     font-size: 0.75rem;
     margin: 0 0;

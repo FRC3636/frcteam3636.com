@@ -7,7 +7,7 @@ import team2015 from "../assets/team-2015.jpg";
 import team2020 from "../assets/team-2020.jpg";
 import team2024 from "../assets/team-2024.jpg";
 import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
-import AutoplayVideo from "../components/AutoplayVideo.astro";
+import Frame from "../components/Frame.astro";
 import Section from "../components/Section.astro";
 import Column from "../components/Column.astro";
 ---
@@ -25,7 +25,7 @@ import Column from "../components/Column.astro";
             </p>
         </Column>
         <div class="flexible">
-            <AutoplayVideo videoId="UEHhuMCoeP8" width={1920} height={892} />
+            <Frame videoId="UEHhuMCoeP8" width={1920} height={892} lazy />
         </div>
     </Section>
     <Section theme="secondary" layout="row" align="spaced" id="about-us">
