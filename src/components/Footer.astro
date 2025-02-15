@@ -102,14 +102,14 @@ import tbaLamp from "../assets/tba_lamp.svg";
             flex-direction: column;
             align-items: center;
             gap: 0.25rem;
-            // This is useful when the width is actually 100%.
+            // This is useful for mobile screens.
             text-align: center;
-            // Put the organization's logo on its own line by default.
-            // If we're on desktop we can use a media query to put everything on one line.
+            // Put the organization's logo on its own line by default (mobile/vertical layout).
             width: 100%;
         }
 
         @media (min-width: 768px) {
+            // On desktop, it looks bad to have the logo on its own line — so we put everything in one row instead.
             .organization-info {
                 width: auto;
             }
@@ -123,7 +123,7 @@ import tbaLamp from "../assets/tba_lamp.svg";
         }
 
         .link-column {
-            margin-top: 0.5rem;
+            margin: 0.5rem 0.25rem 0 0.25rem;
         }
 
         .link-column h2 {

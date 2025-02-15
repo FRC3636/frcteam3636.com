@@ -80,7 +80,8 @@ const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
 
     .hero-img {
         width: 100%;
-        height: 100vh;
+        // `svh` is used instead of `vh` to make sure the bottom of the image doesn't get cut off on mobile browsers
+        height: 100svh;
         object-fit: cover;
     }
 
