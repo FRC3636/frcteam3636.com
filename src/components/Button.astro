@@ -25,6 +25,8 @@ const { theme = "secondary", ...rest } = Astro.props;
         cursor: pointer;
         text-decoration-color: currentColor;
 
+        border: var(--border-secondary);
+
         // Layout
         display: inline-flex;
         gap: 10px;
@@ -34,6 +36,8 @@ const { theme = "secondary", ...rest } = Astro.props;
         &[data-theme="primary"] {
             background-color: var(--accent);
             color: var(--col-white);
+            // Keeping an invisible border prevents layout change between primary/secondary styles.
+            border-color: transparent;
         }
     }
 </style>

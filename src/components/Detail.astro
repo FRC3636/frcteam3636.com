@@ -1,7 +1,5 @@
 ---
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import Icon from "./Icon.astro";
-import Section from "./Section.astro";
 import type { IconDefinition } from "@fortawesome/free-brands-svg-icons";
 
 interface Props {
@@ -29,7 +27,7 @@ const { icon } = Astro.props;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 0.5rem 1.5rem;
         background: var(--bg-secondary);
-        border: solid color-mix(in srgb, var(--col-white) 10%, transparent) 1px;
+        border: var(--border-secondary);
 
         & > .icon {
             position: relative;
@@ -39,12 +37,13 @@ const { icon } = Astro.props;
             z-index: 0;
         }
 
-        // Just make everything a bit smaller
         & > .content {
             display: flex;
             flex-direction: column;
             align-items: start;
             text-align: center;
+
+            // Just make everything a bit smaller:
 
             :global(h2) {
                 font-size: 1rem;
