@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Theme = "primary" | "secondary";
+interface Props extends HTMLAttributes<"a"> {
+    theme?: Theme;
+}
+
+const { theme = "secondary", ...rest } = Astro.props;
+---
+<a class="button" target="_blank" data-theme={theme} {...rest}>
+    <slot />
+</a>
+
+<style lang="scss">
+    .button {
+        // Styling
+        color: var(--primary);
+        background-color: var(--bg-secondary);
+        margin: 0.5rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration-color: currentColor;
+
+        // Layout
+        display: inline-flex;
+        gap: 10px;
+        align-items: baseline;
+        text-transform: capitalize;
+
+        &[data-theme="primary"] {
+            background-color: var(--accent);
+            color: var(--col-white);
+        }
+    }
+</style>

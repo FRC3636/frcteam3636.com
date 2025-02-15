@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Article from "../layouts/Article.astro";
+import Section from "../components/Section.astro";
+import Icon from "../components/Icon.astro";
+import {
+    faArrowUpRightFromSquare,
+    faCalendar,
+    faLocationDot,
+    faTicket,
+    faUtensils,
+} from "@fortawesome/free-solid-svg-icons";
+import Detail from "../components/Detail.astro";
+import DetailsList from "../components/DetailsList.astro";
+import Button from "../components/Button.astro";
+import Frame from "../components/Frame.astro";
+---
+
+<Article
+    title="Auction and Dinner"
+    description="Please join us for an evening of dinner and fun to support\
+                Grant High School’s FIRST Robotics Team."
+>
+    <h1>Auction and Dinner</h1>
+    <Section>
+        <DetailsList>
+            <Detail icon={faCalendar}>
+                <h2>March 15, 2025</h2>
+                <p>6:00 - 10:00 PM</p>
+            </Detail>
+            <Detail icon={faLocationDot}>
+                <h2>Laurelhurst Club</h2>
+                <p>3721 SE Ankeny St</p>
+                <p>Portland, OR 97214</p>
+            </Detail>
+            <Detail icon={faTicket}>
+                <h2>Admission</h2>
+                <p>$40 each</p>
+            </Detail>
+        </DetailsList>
+        <div class="buttons">
+            <Button
+                theme="primary"
+                href="https://www.schoolpay.com/pay/for/Robotics-2025-Fundraising-Auction-Ticket/SeeznZ0"
+            >
+                Buy tickets
+            </Button>
+            <Button
+                href="https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ"
+            >
+                Donate
+            </Button>
+        </div>
+    </Section>
+    <Section>
+        <div>
+            <h2>About the event</h2>
+            <p>
+                Please join us for an evening of dinner and fun to support Grant
+                High School’s FIRST Robotics Team.
+            </p>
+            <p>Appetizers and dinner are included with your ticket.</p>
+            <p>
+                <a
+                    href="https://frcteam3636.schoolauction.net/roboauction25/"
+                    target="_blank"
+                    >Click here for information, a catalog, and more options.</a>
+            </p>
+        </div>
+        <Frame
+            src="https://drive.google.com/file/d/1RgW7OGEnyGjNBfZB7YSqoaTURngymnhQ/preview"
+            width={800}
+            height={500}
+            allow="autoplay"
+        />
+    </Section>
+</Article>

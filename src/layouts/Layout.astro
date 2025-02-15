@@ -5,16 +5,19 @@ import logo from "../assets/logo.svg?raw";
 import Footer from "../components/Footer.astro";
 import LogoLink from "../components/LogoLink.astro";
 
+type HeaderTheme = "normal" | "transparent";
 export interface Props extends BaseProps {
-    transparentHeader?: boolean;
+    header?: HeaderTheme;
 }
 
-const { transparentHeader } = Astro.props;
+const { header = "normal", ...rest } = Astro.props;
 ---
 
-<Base {...Astro.props}>
-    <header id="page-header" class:list={{ transparent: transparentHeader }}>
-        <LogoLink />
+<Base {...rest}>
+    <header id="page-header" data-style={header}>
+        <LogoLink>Generals Robotics</LogoLink>
+        <a href="/">Home</a>
+        <a href="/auction">Auction</a>
     </header>
 
     <slot />
@@ -22,45 +25,51 @@ const { transparentHeader } = Astro.props;
     <Footer />
 </Base>
 
+<style lang="scss">
+    header {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 100px;
+        padding: 0 2rem;
+        gap: 2rem;
+
+        position: sticky;
+        top: 0;
+
+        background-color: var(--accent);
+        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+        font-family: var(--font-heading), sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        color: var(--col-white);
+
+        z-index: 100;
+
+        &[data-style="transparent"] {
+            position: fixed;
+            left: 0;
+            right: 0;
+            transition: background-color 0.5s ease-out;
+
+            &:not(.scrolled) {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        a {
+            color: var(--col-white);
+            text-decoration-color: currentColor;
+        }
+    }
+</style>
+
 <script>
     // If the header is transparent, it should turn blue when you scroll.
 
     const header = document.getElementById("page-header")!;
-    window.addEventListener("scroll", (event) => {
+    window.addEventListener("scroll", () => {
         header.classList.toggle("scrolled", window.scrollY > 10);
     });
 </script>
-
-<style>
-    header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: sticky;
-        top: 0;
-
-        height: 100px;
-
-        background-color: var(--accent);
-        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
-
-        z-index: 100;
-    }
-
-    header.transparent {
-        background-color: rgba(0, 0, 0, 0.5);
-        position: fixed;
-        left: 0;
-        right: 0;
-        transition: background-color 0.5s ease-out;
-    }
-
-    header.transparent.scrolled {
-        background-color: var(--accent);
-    }
-
-    a :global(svg) {
-        width: 60px;
-        color: white;
-    }
-</style>

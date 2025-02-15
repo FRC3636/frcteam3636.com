@@ -1,0 +1,116 @@
+---
+// This component handles layout & lazy loading of iframes.
+// The iframe is wrapped in a div which allows it to shrink while maintaining its aspect ratio but not grow past its
+// original width and height, which makes it better for mobile.
+
+// It also supports setting `lazy=true` which prevents loading the iframe until it is on the screen, which is nice for
+// autoplay videos so that the user doesn't miss the beginning. It also speeds up the page a bit.
+
+// To use the component, just set either `src` to the URL or `videoId` to the YouTube video ID, and also set the maximum
+// `width` and `height`. Add any other miscellaneous iframe properties as you desire.
+
+import type { HTMLAttributes } from "astro/types";
+
+type BaseProps = {
+    width: number;
+    height: number;
+    /** If `true`, uses an IntersectionObserver on the client-side to prevent loading until the user has scrolled to the frame */
+    lazy?: boolean;
+};
+type SourceProps = { src: string } | { videoId: string };
+export type Props = SourceProps & BaseProps & HTMLAttributes<"iframe">;
+
+let { width, height, allow, allowfullscreen, src, lazy, ...rest } = Astro.props;
+
+if ("videoId" in Astro.props) {
+    src ??= `https://www.youtube-nocookie.com/embed/${Astro.props.videoId}?autoplay=1&mute=1`;
+    allow ??=
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    allowfullscreen ??= true;
+}
+---
+
+<div class="frame-container" data-lazy={lazy}>
+    {
+        lazy ? (
+            /* The iframe isn't actually loaded into the document at first because of the <template>.
+
+            Once it is, it becomes however big its containing div is.
+            That means we can add it without changing the layout - this is useful for lazy loading videos
+            (since there's no reason to start playing until the user scrolls down).
+
+            We use an IntersectionObserver to detect when the frame is in view and then add the iframe element back in. */
+            <template>
+                <iframe
+                    {src}
+                    {allow}
+                    {allowfullscreen}
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    loading="lazy"
+                    {...rest}
+                />
+            </template>
+        ) : (
+            <iframe
+                {src}
+                {allow}
+                {allowfullscreen}
+                referrerpolicy="strict-origin-when-cross-origin"
+                loading="lazy"
+                {...rest}
+            />
+        )
+    }
+</div>
+
+<style
+    lang="scss"
+    define:vars={{
+        aspect: `${width / height}`,
+        "max-w": `${width}px`,
+    }}
+>
+    .frame-container {
+        max-width: var(--max-w);
+        width: 100%;
+        aspect-ratio: var(--aspect);
+        background-color: black;
+    }
+
+    // Grow to parent size
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<script>
+    // Lazy load the frame by adding the inner iframe element when it's in view.
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const template =
+                        entry.target.querySelector<HTMLTemplateElement>(
+                            "template",
+                        );
+                    if (template) {
+                        const iframe = template.content.firstElementChild!;
+                        entry.target.appendChild(iframe);
+                        template.remove();
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        },
+        // just try to load it a bit little early
+        { rootMargin: "30px" },
+    );
+
+    const videoContainer = document.querySelectorAll(
+        ".frame-container[data-lazy=true]",
+    );
+    for (const container of videoContainer) {
+        observer.observe(container);
+    }
+</script>

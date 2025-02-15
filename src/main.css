@@ -77,7 +77,9 @@ a:hover {
     a {
         text-decoration-color: var(--accent);
     }
+
     a:hover {
+        color: currentColor;
         text-decoration-color: var(--col-white);
     }
 }
@@ -85,14 +87,14 @@ a:hover {
 h1,
 h2 {
     font-family: var(--font-heading);
-    text-align: center;
     font-weight: 1000;
     text-transform: uppercase;
-    margin: 1rem;
+    margin: 1rem 0 0 0;
     color: var(--primary);
 }
 
 h1 {
+    text-align: center;
     font-size: 3rem;
 }
 
@@ -101,8 +103,7 @@ h2 {
 }
 
 p {
-    margin: 0;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     font-size: 1rem;
 }
 
@@ -119,6 +120,10 @@ figcaption {
     margin: 0.5rem;
 }
 
+iframe {
+    border: none;
+}
+
 .callout {
     font-size: 0.75rem;
     margin: 0 0;
@@ -129,6 +134,7 @@ figcaption {
     box-sizing: content-box;
     display: inline-block;
     height: 1em;
+    aspect-ratio: 1 / 1;
     vertical-align: -0.125em;
 }
 

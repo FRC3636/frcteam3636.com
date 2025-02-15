@@ -3,14 +3,15 @@ import logo from "../assets/logo.svg?raw";
 
 export interface Props {
     footer?: boolean;
+    collapse?: boolean;
 }
 
-const { footer } = Astro.props;
+const { footer, collapse } = Astro.props;
 ---
 
-<a href="/" title="Homepage" class:list={["logo", { footer }]}>
+<a href="/" title="Homepage" class:list={["logo", { footer, collapse }]}>
     <Fragment set:html={logo} />
-    <span>
+    <span class="text">
         <slot />
     </span>
 </a>
@@ -21,32 +22,36 @@ const { footer } = Astro.props;
         align-items: center;
         gap: 0.5rem;
 
-        color: var(--accent);
-        font-family: var(--font-heading);
+        color: var(--col-white);
+        font-family: var(--font-heading), sans-serif;
         font-weight: 1000;
         text-transform: uppercase;
         text-decoration: none;
+
+        &:not(.footer) > .text {
+            @media (max-width: 800px) {
+                display: none;
+            }
+        }
+
+        &.footer {
+            color: var(--accent);
+
+            @media (prefers-color-scheme: dark) {
+                // Use white anyway
+                color: var(--col-white);
+            }
+        }
     }
 
-    span {
-        // Optical centering
-        transform: translateY(2px);
-    }
-
-    // just scale the SVG down to 60px
     .logo :global(svg) {
         width: 60px;
-        color: var(--col-white);
-    }
-    .logo.footer :global(svg) {
-        width: 40px;
-        color: var(--accent);
+        // Optical centering
+        transform: translateY(-2px);
     }
 
-    @media (prefers-color-scheme: dark) {
-        a,
-        .logo.footer :global(svg) {
-            color: var(--col-white);
-        }
+    // just scale the SVG down a bit
+    .logo.footer :global(svg) {
+        width: 40px;
     }
 </style>
