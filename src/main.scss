@@ -35,19 +35,15 @@
     --col-body: var(--col-dgray);
     --primary: var(--col-black);
     --accent: var(--col-blue);
-}
 
-@media (prefers-color-scheme: dark) {
-    :root {
+    @media (prefers-color-scheme: dark) {
         --bg: var(--col-black);
         --bg-secondary: var(--col-dark);
         --primary: var(--col-white);
         --col-body: var(--col-lgray);
     }
-}
 
-@media screen and (prefers-reduced-motion: reduce) {
-    html {
+    @media screen and (prefers-reduced-motion: reduce) {
         scroll-behavior: auto;
     }
 }
@@ -67,40 +63,39 @@ body {
 a {
     color: currentColor;
     transition: text-decoration 0.2s ease-in-out;
-}
 
-a:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--col-blue);
-    color: var(--col-blue);
-}
-
-@media (prefers-color-scheme: dark) {
-    a {
+    @media (prefers-color-scheme: dark) {
         text-decoration-color: var(--accent);
     }
 
-    a:hover {
-        color: currentColor;
-        text-decoration-color: var(--col-white);
+    &:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--col-blue);
+        color: var(--col-blue);
+
+        @media (prefers-color-scheme: dark) {
+            color: currentColor;
+            text-decoration-color: var(--col-white);
+        }
     }
 }
 
-h1,
-h2 {
+%heading {
     font-family: var(--font-heading), sans-serif;
     font-weight: 1000;
     text-transform: uppercase;
-    margin: 1rem 0 0 0;
+    margin: 0 0 1rem 0;
     color: var(--primary);
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
+    @extend %heading;
     font-size: 3rem;
 }
 
 h2 {
+    @extend %heading;
     font-size: 2rem;
 }
 
@@ -127,6 +122,15 @@ iframe {
     border: none;
 }
 
+img {
+    background-color: gray;
+
+    &:not(.full-size) {
+        max-width: 90vw;
+        height: auto;
+    }
+}
+
 .callout {
     font-size: 0.75rem;
     margin: 0 0;
@@ -145,4 +149,9 @@ iframe {
     display: inline-block;
     height: 1em;
     margin: 0 5px;
+}
+
+// Used by @divriots/jampack for optimization
+the-fold {
+    display: none;
 }

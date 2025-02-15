@@ -19,22 +19,21 @@ const {
 } = Astro.props;
 ---
 
-<div
-    class="row"
+<section
     data-theme={theme}
     data-align={align}
     data-layout={layout}
     {...rest}
 >
     <slot />
-</div>
+</section>
 
 <style lang="scss">
-    .row {
+    section {
         display: flex;
         flex-direction: column;
-        padding: 2rem;
-        gap: 2rem;
+        gap: 1rem;
+        padding: 1rem;
         justify-content: center;
         align-items: center;
 
@@ -47,7 +46,6 @@ const {
         &[data-layout="row"] {
             flex-direction: row;
             align-items: start;
-            gap: 2rem;
 
             @media (max-width: 768px) {
                 flex-direction: column;
@@ -57,12 +55,18 @@ const {
 
         &[data-align="spaced"] {
             justify-content: space-around;
+            padding: 1rem;
         }
 
         // Children
 
         :global(p) {
             max-width: 50ch;
+        }
+
+        > :global(h1, h2) {
+            // The `gap` property on the section makes heading margins less necessary.
+            margin-bottom: 0.5rem;
         }
     }
 </style>

@@ -14,6 +14,8 @@ import Detail from "../components/Detail.astro";
 import DetailsList from "../components/DetailsList.astro";
 import Button from "../components/Button.astro";
 import Frame from "../components/Frame.astro";
+import { Image } from "astro:assets";
+import auctionImg from "../assets/auction/auction-2024.jpeg";
 ---
 
 <Article
@@ -21,13 +23,20 @@ import Frame from "../components/Frame.astro";
     description="Please join us for an evening of dinner and fun to support\
                 Grant High School’s FIRST Robotics Team."
 >
-    <h1>Auction and Dinner</h1>
     <Section>
+        <Image
+            src={auctionImg}
+            width="800"
+            alt="Auction attendees sit around several tables adorned with black tablecloths. In the foreground, two robots\
+            are partially in frame."
+        />
+        <h1>Auction and Dinner</h1>
         <DetailsList>
             <Detail icon={faCalendar}>
                 <h2>
-                    <a href="/assets/auction/AuctionEvent.ics"
-                        >March 15, 2025</a>
+                    <a href="/assets/auction/AuctionEvent.ics">
+                        March 15, 2025
+                    </a>
                 </h2>
                 <p>6:00 - 10:00 PM</p>
             </Detail>
@@ -55,6 +64,7 @@ import Frame from "../components/Frame.astro";
             </Button>
         </div>
     </Section>
+    <the-fold></the-fold>
     <Section>
         <div>
             <h2>About the event</h2>
@@ -66,15 +76,16 @@ import Frame from "../components/Frame.astro";
             <p>
                 <a
                     href="https://frcteam3636.schoolauction.net/roboauction25/"
-                    target="_blank"
-                    >Click here for information and more options.</a
+                    target="_blank">Click here to view full details.</a
                 >
             </p>
             <p>
-                <a
+                or <a
                     href="https://frcteam3636.schoolauction.net/roboauction25/catalog"
-                    target="_blank">Click to view the catalog.</a
+                    target="_blank"
                 >
+                browse the catalog</a
+            >.
             </p>
         </div>
         <Frame

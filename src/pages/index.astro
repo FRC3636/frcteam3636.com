@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Image from "../components/Image.astro";
+import { Image } from "astro:assets";
 import Hero from "../components/Hero.astro";
 import team2011 from "../assets/team-2011.jpg";
 import team2015 from "../assets/team-2015.jpg";
@@ -13,7 +13,7 @@ import Column from "../components/Column.astro";
 ---
 
 <Layout header="transparent">
-    <Hero />
+    <Hero scrollHref="#belowHero" />
     <Section layout="row" align="spaced" id="below-hero">
         <Column class="flexible">
             <h2>2024 Season Recap</h2>
@@ -25,7 +25,7 @@ import Column from "../components/Column.astro";
             </p>
         </Column>
         <div class="flexible">
-            <Frame videoId="UEHhuMCoeP8" width={1920} height={892} lazy />
+            <Frame videoId="UEHhuMCoeP8" width={1920} height={892} />
         </div>
     </Section>
     <Section theme="secondary" layout="row" align="spaced" id="about-us">

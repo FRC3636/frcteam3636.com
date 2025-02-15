@@ -1,32 +1,37 @@
 ---
-import Image from "../components/Image.astro";
+import { Image } from "astro:assets";
+import Icon from "../components/Icon.astro";
 import hero from "../assets/robot-hero.jpg";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
+interface Props {
+    scrollHref: string;
+}
+
+const { scrollHref } = Astro.props;
 ---
 
 <div class="hero">
     <Image
         src={hero}
         widths={[900, 1200, 1400, 1800, hero.width]}
-        alt=`Generals Robotics' robot "Sun Tzu," made for the 2024 FIRST Robotics Competition Season`
+        alt="Sun Tzu, the 2024 competition robot built by Generals Robotics, sits on a concrete surface in an outdoor setting. It features a sturdy black and blue frame adorned with stickers."
         sizes="100vw"
-        class="hero-img"
+        class="hero-img full-size"
     />
     <div class="hero-overlay">
         <div class="hero-details">
             <h1>The Official Website of Generals Robotics</h1>
         </div>
-        <a class="hero-scroll" href="#below-hero">
+        <a class="hero-scroll" href={scrollHref}>
             <p class="callout">Learn More</p>
             <div class="scroll-arrow">
-                <Fragment set:html={chevronDown.html} />
+                <Icon symbol={faChevronDown} />
             </div>
         </a>
     </div>
 </div>
+<the-fold />
 
 <style lang="scss">
     .hero {
@@ -55,8 +60,7 @@ const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
     }
 
     .hero-details {
-        padding: 1rem;
-        padding-top: 5vw;
+        padding: 5vw 1rem 1rem;
     }
 
     .hero-scroll {
@@ -65,18 +69,28 @@ const chevronDown = icon({ prefix: "fas", iconName: faChevronDown.iconName });
         flex-direction: column;
         align-items: center;
         text-transform: uppercase;
-    }
+        color: white;
 
-    .hero-scroll .scroll-arrow {
-        font-size: 2rem;
-        animation: scroll-nag 3s infinite;
-    }
+        .scroll-arrow {
+            font-size: 2rem;
+            animation: scroll-nag 3s infinite;
 
-    @media screen and (prefers-reduced-motion: reduce) {
-        .hero-scroll .scroll-arrow {
-            animation: none;
+            @media screen and (prefers-reduced-motion: reduce) {
+                animation: none;
+            }
+        }
+
+        p {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-decoration-color: var(--accent);
+        }
+
+        &:hover p {
+            text-decoration-color: var(--col-white);
         }
     }
+
 
     .hero-img {
         width: 100%;
