@@ -45,7 +45,10 @@ const {
 
         &[data-layout="row"] {
             flex-direction: row;
-            align-items: start;
+
+            &:not([data-align="spaced"]) {
+                align-items: start;
+            }
 
             @media (max-width: 768px) {
                 flex-direction: column;
@@ -61,7 +64,7 @@ const {
         // Children
 
         :global(p) {
-            max-width: 50ch;
+            max-width: var(--prose-width);
         }
 
         > :global(h1, h2) {

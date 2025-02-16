@@ -1,15 +1,36 @@
 ---
 import type { IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import { icon } from "@fortawesome/fontawesome-svg-core";
+import type { ImageMetadata } from "astro";
 
 type IconWidth = "fixed" | "variable";
 interface Props {
-    symbol: IconDefinition;
+    symbol: IconDefinition | typeof import("*.svg").default;
     width?: IconWidth;
 }
 
 const { symbol, width = "fixed" } = Astro.props;
-const theIcon = icon(symbol);
+
+const Component = symbol;
 ---
 
-<Fragment set:html={theIcon.html} />
+{
+    "src" in symbol ? (
+    <span class="icon">
+            <Component />
+        </span>
+        ) : (
+    <Fragment set:html={icon(symbol).html} />
+        )
+    }
+
+<style>
+    .icon {
+        display: contents;
+
+        > * {
+            height: 0.8em;
+            vertical-align: baseline;
+        }
+    }
+</style>

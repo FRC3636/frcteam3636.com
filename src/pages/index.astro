@@ -2,14 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+
 import team2011 from "../assets/team-2011.jpg";
 import team2015 from "../assets/team-2015.jpg";
 import team2020 from "../assets/team-2020.jpg";
 import team2024 from "../assets/team-2024.jpg";
 import aboutUsFlavor from "../assets/about-us-flavor.jpeg";
+import cad from "../assets/2025/cad-transparent.png";
 import Frame from "../components/Frame.astro";
 import Section from "../components/Section.astro";
 import Column from "../components/Column.astro";
+import openAlliance from "../assets/openalliance.svg";
+import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL } from "../links";
 ---
 
 <Layout header="transparent">
@@ -29,16 +34,14 @@ import Column from "../components/Column.astro";
         </div>
     </Section>
     <Section theme="secondary" layout="row" align="spaced" id="about-us">
-        <div>
-            <Image
-                src={aboutUsFlavor}
-                class="about-us-img"
-                widths={[900, 1200, 1400, 1800, aboutUsFlavor.width]}
-                alt="Napoleon, our robot from the 2024 robotics season"
-                sizes="30vw"
-            />
-        </div>
-        <Column class="about-us-text">
+        <Image
+            src={aboutUsFlavor}
+            class="flavor-image"
+            widths={[900, 1200, 1400, 1800, aboutUsFlavor.width]}
+            alt="Napoleon, our robot from the 2022 robotics season, sitting still on a field along side teams' robots"
+            sizes="30vw"
+        />
+        <Column>
             <h2>About Us</h2>
             <p>
                 Generals Robotics, assigned the team number of “3636,” was
@@ -60,6 +63,47 @@ import Column from "../components/Column.astro";
             </p>
         </Column>
     </Section>
+    <Section layout="row" align="spaced">
+        <Column>
+            <h2>Our work in 2025</h2>
+            <div class="prose">
+                <p>
+                    We're hard at work designing, building, and programming our
+                    robot for the 2025 season! Here are some ways you can follow
+                    along with our progress:
+                </p>
+
+                <ul>
+                    <li>
+                        We participate in the <strong>
+                        <Icon symbol={openAlliance} />
+                        Open Alliance</strong
+                    >, maintaining a <a href={BUILD_THREAD}>
+                        Build Thread</a
+                    > where you can find our latest work.
+                    </li>
+                    <li>
+                        Check our <a href={PHOTO_ALBUM}>Photo Album</a> to see the
+                        pictures we've taken throughout the season.
+                    </li>
+                    <li>
+                        Find our up-to-date robot code on our <a
+                        href={GITHUB_ACCOUNT}>GitHub account</a
+                    >.
+                    </li>
+                    <li>
+                        Our <a href={CAD_MODEL}>Onshape CAD document</a> contains
+                        a 3D model of our robot design this season.
+                    </li>
+                </ul>
+            </div>
+        </Column>
+        <Image
+            src={cad}
+            class="flavor-image transparent"
+            alt="A 3D model of this year's robot design, featuring an elevator mechanism and funnel."
+        />
+    </Section>
     <Section>
         <h2>Over the Years</h2>
         <Column class="team-history-gallery">
@@ -67,7 +111,7 @@ import Column from "../components/Column.astro";
                 <Image
                     src={team2011}
                     alt="The team members from 2011"
-                    class="team-img"
+                    class="flavor-image"
                     sizes="30vw"
                 />
                 <figcaption>2011 — FRC Logomotion</figcaption>
@@ -76,7 +120,7 @@ import Column from "../components/Column.astro";
                 <Image
                     src={team2015}
                     alt="The team members from 2015"
-                    class="team-img"
+                    class="flavor-image"
                     sizes="30vw"
                 />
                 <figcaption>2015 Wilsonville Event</figcaption>
@@ -85,7 +129,7 @@ import Column from "../components/Column.astro";
                 <Image
                     src={team2020}
                     alt="The team members from 2020"
-                    class="team-img"
+                    class="flavor-image"
                     sizes="30vw"
                 />
                 <figcaption>2020 Clackamas Event</figcaption>
@@ -94,41 +138,40 @@ import Column from "../components/Column.astro";
                 <Image
                     src={team2024}
                     alt="The team members from 2024"
-                    class="team-img"
+                    class="flavor-image"
                     sizes="30vw"
                 />
                 <figcaption>2024 Oregon State Fairgrounds Event</figcaption>
             </figure>
         </Column>
     </Section>
-</Layout>
 
-<style lang="scss">
-    // Turns into a full row on mobile
-    .flexible {
-        // Grow/shrink to fill the space evenly
-        flex: 1;
-        // Take a whole row when in a vertical format (mobile)
-        width: 100%;
-    }
-
-    h1 {
-        color: var(--col-white);
-    }
-
-    .team-img,
-    .about-us-img {
-        width: 35vw;
-        height: auto;
-
-        @media (max-width: 768px) {
-            width: 80vw;
+    <style lang="scss">
+        // Turns into a full row on mobile
+        .flexible {
+            // Grow/shrink to fill the space evenly
+            flex: 1;
+            // Take a whole row when in a vertical format (mobile)
+            width: 100%;
         }
-    }
 
-    .team-history-gallery {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-</style>
+        h1 {
+            color: var(--col-white);
+        }
+
+        .flavor-image {
+            width: 35vw;
+            height: auto;
+
+            @media (max-width: 768px) {
+                width: 80vw;
+            }
+        }
+
+        .team-history-gallery {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    </style>
+</Layout>
