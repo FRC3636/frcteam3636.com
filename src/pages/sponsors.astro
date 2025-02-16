@@ -1,0 +1,46 @@
+---
+import Article from "../layouts/Article.astro";
+import Section from "../components/Section.astro";
+import Column from "../components/Column.astro";
+import { Image } from "astro:assets";
+
+import robotConstruction from "../assets/2025/robot-construction.jpeg";
+import { CONTACT_US } from "../links";
+---
+
+<Article>
+    <Section>
+        <h1>Sponsorship</h1>
+        <Section layout="row" align="spaced">
+            <Column align="top">
+                <br />
+                <p>
+                    Robotics is a wonderful and engaging experience. Funding
+                    plays a key role in ensuring it remains that way. Even
+                    though we are a team out of the Portland Public Schools
+                    system, we receive no funding from the district. To raise
+                    money, we rely on sponsorship.
+                </p>
+                <p>
+                    Every year, students contact local businesses to talk to
+                    them about sponsorship opportunities. These conversations
+                    teach students important skills that they will then carry
+                    into their post-high school experiences. Sponsorship is a
+                    crucial part of this program, and any funds we receive go
+                    directly toward cultivating STEM experiences.
+                </p>
+                <br />
+                <h2>Interested in sponsoring us?</h2>
+                <p><a href={CONTACT_US}>Click here to contact us</a></p>
+                <p>
+                    Tell us about your business, any questions you have, and
+                    your preferred method of contact.
+                </p>
+            </Column>
+            <Image
+                src={robotConstruction}
+                alt="Three teenagers from Generals Robotics assembling a large robot"
+            />
+        </Section>
+    </Section>
+</Article>
