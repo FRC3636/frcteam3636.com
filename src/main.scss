@@ -154,7 +154,12 @@ img {
     margin: 0 5px;
 }
 
-.container {
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
     margin-bottom: 1rem;
 }
 
