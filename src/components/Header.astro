@@ -18,7 +18,7 @@ const { theme } = Astro.props;
 <header id="page-header" data-theme={theme}>
     <div class="always-shown">
         <LogoLink id="header-logo">Generals Robotics</LogoLink>
-        <label for="navbar-state" role="button" class="navbar-toggle">
+        <label for="navbar-state" role="button" class="navbar-toggle" aria-label="Toggle Menu">
             <Icon symbol={faBars} class="bars" />
             <Icon symbol={faXmark} class="xmark" />
         </label>
