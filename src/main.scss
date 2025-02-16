@@ -148,19 +148,14 @@ img {
     margin: 0 0;
 }
 
-.svg-inline--fa {
-    overflow: visible;
-    box-sizing: content-box;
-    display: inline-block;
-    height: 1em;
-    aspect-ratio: 1 / 1;
-    vertical-align: -0.125em;
-}
-
 .inline-image {
     display: inline-block;
     height: 1em;
     margin: 0 5px;
+}
+
+.container {
+    margin-bottom: 1rem;
 }
 
 // Used by @divriots/jampack for optimization
