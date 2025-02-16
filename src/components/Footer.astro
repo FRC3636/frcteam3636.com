@@ -9,7 +9,7 @@ import {
     faYoutube,
     faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL } from "../links";
+import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL, CONTACT_US } from "../links";
 ---
 
 <footer>
@@ -51,7 +51,7 @@ import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL } from "../links";
                 <a href="https://3636.live">Watch our matches live</a>
             </li>
             <li>
-                <a href="mailto:frcteam3636@gmail.com">Contact Us</a>
+                <a href={CONTACT_US}>Contact Us</a>
             </li>
         </ul>
     </div>
@@ -83,6 +83,7 @@ import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL } from "../links";
             justify-content: center;
             background-color: var(--bg-secondary);
             white-space-collapse: collapse;
+            margin-top: auto;
         }
 
         .organization-info {
