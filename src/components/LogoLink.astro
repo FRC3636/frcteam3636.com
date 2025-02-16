@@ -1,15 +1,16 @@
 ---
 import logo from "../assets/logo.svg?raw";
+import type { HTMLAttributes } from "astro/types";
 
-export interface Props {
+export interface Props extends HTMLAttributes<"a"> {
     footer?: boolean;
     collapse?: boolean;
 }
 
-const { footer, collapse } = Astro.props;
+const { footer, collapse, ...rest } = Astro.props;
 ---
 
-<a href="/" title="Homepage" class:list={["logo", { footer, collapse }]}>
+<a href="/" title="Homepage" class:list={["logo", { footer, collapse }]} {...rest}>
     <Fragment set:html={logo} />
     <span class="text">
         <slot />
@@ -29,7 +30,7 @@ const { footer, collapse } = Astro.props;
         text-decoration: none;
 
         &:not(.footer) > .text {
-            @media (max-width: 800px) {
+            @media (max-width: 600px) {
                 display: none;
             }
         }

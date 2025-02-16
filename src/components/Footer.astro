@@ -9,6 +9,7 @@ import {
     faYoutube,
     faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL, CONTACT_US } from "../links";
 ---
 
 <footer>
@@ -50,7 +51,7 @@ import {
                 <a href="https://3636.live">Watch our matches live</a>
             </li>
             <li>
-                <a href="mailto:frcteam3636@gmail.com">Contact Us</a>
+                <a href={CONTACT_US}>Contact Us</a>
             </li>
         </ul>
     </div>
@@ -59,26 +60,16 @@ import {
         <h2>Our Work in 2025</h2>
         <ul>
             <li>
-                <a
-                    href="https://www.chiefdelphi.com/t/frc-team-3636-generals-robotics-2025-build-thread/476448"
-                >
-                    Build Thread
-                </a>
+                <a href={BUILD_THREAD}> Build Thread </a>
             </li>
             <li>
-                <a href="https://photos.app.goo.gl/cHvVaUfFe965jwtz6">
-                    Build Season Photos
-                </a>
+                <a href={PHOTO_ALBUM}> Build Season Photos </a>
             </li>
             <li>
-                <a href="https://github.com/FRC3636/frc-2025">Robot Code</a>
+                <a href={GITHUB_ACCOUNT}>Robot Code</a>
             </li>
             <li>
-                <a
-                    href="https://cad.onshape.com/documents/91312b208aad8571797edb8e/w/f972da841b2dc7667c8171ec/e/01728691127e205a98aa4858"
-                >
-                    Onshape CAD Model
-                </a>
+                <a href={CAD_MODEL}> Onshape CAD Model </a>
             </li>
         </ul>
     </div>
@@ -92,13 +83,14 @@ import {
             justify-content: center;
             background-color: var(--bg-secondary);
             white-space-collapse: collapse;
+            margin-top: auto;
         }
 
         .organization-info {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.5rem;
             // This is useful for mobile screens.
             text-align: center;
             // Put the organization's logo on its own line by default (mobile/vertical layout).
@@ -137,6 +129,7 @@ import {
             padding: 0;
             margin: 0;
         }
+
         .link-column li {
             margin-top: 0.5rem;
         }

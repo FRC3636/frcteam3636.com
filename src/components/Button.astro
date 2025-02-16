@@ -39,5 +39,11 @@ const { theme = "secondary", ...rest } = Astro.props;
             // Keeping an invisible border prevents layout change between primary/secondary styles.
             border-color: transparent;
         }
+
+        @media (max-width: 800px) {
+            margin: 0.2rem;
+            font-size: 1rem;
+            padding: 0.5rem;
+        }
     }
 </style>

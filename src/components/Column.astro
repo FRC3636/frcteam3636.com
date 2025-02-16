@@ -1,10 +1,14 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-interface Props extends HTMLAttributes<"div"> {}
-const { ...rest } = Astro.props;
+
+type Align = "center" | "top";
+interface Props extends HTMLAttributes<"div"> {
+    align?: Align,
+}
+const { align = "center", ...rest } = Astro.props;
 ---
 
-<div {...rest}>
+<div data-align={align} {...rest}>
     <slot />
 </div>
 
@@ -15,5 +19,9 @@ const { ...rest } = Astro.props;
         justify-content: center;
         align-items: center;
         align-self: stretch;
+
+        &[data-align="top"] {
+            justify-content: flex-start;
+        }
     }
 </style>

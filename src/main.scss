@@ -12,6 +12,8 @@
 }
 
 :root {
+    font-size: 1.25em;
+
     --col-white: #ffffff;
     --col-dark: #0a0a0a;
     --col-black: black;
@@ -36,6 +38,8 @@
     --primary: var(--col-black);
     --accent: var(--col-blue);
 
+    --prose-width: 50ch;
+
     @media (prefers-color-scheme: dark) {
         --bg: var(--col-black);
         --bg-secondary: var(--col-dark);
@@ -46,11 +50,7 @@
     @media screen and (prefers-reduced-motion: reduce) {
         scroll-behavior: auto;
     }
-}
 
-html,
-body {
-    font-size: 1.25em;
 }
 
 body {
@@ -58,6 +58,11 @@ body {
     max-width: 100%;
     background-color: var(--bg);
     color: var(--col-body);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
 }
 
 a {
@@ -100,8 +105,13 @@ h2 {
 }
 
 p {
-    margin: 0 0 1rem;
     font-size: 1rem;
+    margin: 0 0 1rem;
+    line-height: 1.3em;
+}
+
+.prose {
+    max-width: var(--prose-width);
 }
 
 figure {
@@ -123,7 +133,9 @@ iframe {
 }
 
 img {
-    background-color: gray;
+    &:not(.transparent) {
+        background-color: gray;
+    }
 
     &:not(.full-size) {
         max-width: 90vw;
@@ -136,19 +148,19 @@ img {
     margin: 0 0;
 }
 
-.svg-inline--fa {
-    overflow: visible;
-    box-sizing: content-box;
-    display: inline-block;
-    height: 1em;
-    aspect-ratio: 1 / 1;
-    vertical-align: -0.125em;
-}
-
 .inline-image {
     display: inline-block;
     height: 1em;
     margin: 0 5px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
 // Used by @divriots/jampack for optimization

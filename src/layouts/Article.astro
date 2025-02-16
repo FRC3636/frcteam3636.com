@@ -1,4 +1,8 @@
 ---
+// A layout that includes reasonable defaults for an "article"-style page with
+// a title at the top and several sections. This layout should work for most
+// pages except for the homepage because of the special cover image.
+
 import Layout, { type Props as LayoutProps } from "./Layout.astro";
 
 interface Props extends LayoutProps {}
@@ -27,6 +31,10 @@ const { ...rest } = Astro.props;
             margin: 0;
             @media (max-width: 600px) {
                 font-size: 2.5rem;
+            }
+
+            &:first-child {
+                margin-top: 2rem;
             }
         }
 

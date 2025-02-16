@@ -1,0 +1,160 @@
+---
+import LogoLink from "./LogoLink.astro";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import Icon from "../components/Icon.astro";
+
+export type HeaderTheme = "normal" | "transparent";
+interface Props {
+    /**
+     * Sets the header theme. The `transparent` theme makes the header float
+     * over the content and only become opaque after beginning to scroll.
+     */
+    theme?: HeaderTheme;
+}
+
+const { theme } = Astro.props;
+---
+
+<header id="page-header" data-theme={theme}>
+    <div class="always-shown">
+        <LogoLink id="header-logo">Generals Robotics</LogoLink>
+        <label for="navbar-state" role="button" class="navbar-toggle" aria-label="Toggle Menu">
+            <Icon symbol={faBars} class="bars" />
+            <Icon symbol={faXmark} class="xmark" />
+        </label>
+    </div>
+    <input type="checkbox" id="navbar-state" />
+    <nav>
+        <a href="/">Home</a>
+        <a href="/auction">Auction</a>
+        <a href="/sponsors">Sponsorship</a>
+    </nav>
+</header>
+
+<style lang="scss">
+    header {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.25rem 2rem;
+        overflow: hidden;
+
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        color: var(--col-white);
+        background-color: var(--accent);
+
+        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+        font-family: var(--font-heading), sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+
+        transition: background-color 0.5s ease-out;
+
+        z-index: 100;
+
+        a {
+            color: var(--col-white);
+            text-decoration-color: currentColor;
+        }
+
+        // Theming
+
+        &[data-theme="transparent"] {
+            position: fixed;
+
+            &:not(.scrolled) {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+
+    nav,
+    #always-shown {
+        display: contents;
+    }
+
+    #navbar-state,
+    .navbar-toggle {
+        display: none;
+    }
+
+    @media (max-width: 1024px) {
+        // Toggle logic
+
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+
+            &:has(#navbar-state:checked) {
+                background-color: var(--accent);
+                height: 100vh;
+                position: fixed;
+
+                nav {
+                    height: auto;
+                    opacity: 100%;
+                }
+
+                .xmark {
+                    opacity: 100%;
+                }
+
+                .bars {
+                    opacity: 0;
+                }
+            }
+
+            nav {
+                display: flex;
+                flex-direction: column;
+                height: 0;
+                opacity: 0;
+                font-size: 2em;
+                line-height: 1.5em;
+            }
+        }
+
+        .navbar-toggle {
+            display: contents;
+
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+
+            user-select: none;
+            -webkit-user-select: none;
+
+            .xmark,
+            .bars {
+                display: block;
+                position: absolute;
+                right: 0;
+                cursor: pointer;
+                font-size: 1.75em;
+                transition: opacity 0.25s ease-in-out;
+
+                user-select: none;
+                -webkit-user-select: none;
+            }
+
+            .xmark {
+                opacity: 0;
+            }
+        }
+
+        .always-shown {
+            display: flex;
+
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            align-self: stretch;
+        }
+    }
+</style>
