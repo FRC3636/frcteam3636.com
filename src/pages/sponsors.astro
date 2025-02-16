@@ -3,7 +3,7 @@ import Article from "../layouts/Article.astro";
 import Section from "../components/Section.astro";
 import Column from "../components/Column.astro";
 import { Image } from "astro:assets";
-import { CONTACT_US } from "../links";
+import { CONTACT_US, DONATE_LINK } from "../links";
 import Button from "../components/Button.astro";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Icon from "../components/Icon.astro";
@@ -35,18 +35,11 @@ import robotConstruction from "../assets/2025/robot-construction.jpeg";
                 <br />
                 <h2>Interested in sponsoring us?</h2>
                 <div class="container">
-                    <Button
-                        theme="primary"
-                        href={CONTACT_US}
-                    >
+                    <Button theme="primary" href={CONTACT_US}>
                         <Icon symbol={faEnvelope} />
                         Contact us
                     </Button>
-                    <Button
-                        href="https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ"
-                    >
-                        Donate now
-                    </Button>
+                    <Button href={DONATE_LINK}>Donate now</Button>
                 </div>
                 <p>
                     Tell us about your business, any questions you have, and

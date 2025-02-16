@@ -16,6 +16,7 @@ import Button from "../components/Button.astro";
 import Frame from "../components/Frame.astro";
 import { Image } from "astro:assets";
 import auctionImg from "../assets/auction/auction-2024.jpeg";
+import { DONATE_LINK } from "../links";
 ---
 
 <Article
@@ -57,11 +58,7 @@ import auctionImg from "../assets/auction/auction-2024.jpeg";
             >
                 Buy tickets
             </Button>
-            <Button
-                href="https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ"
-            >
-                Donate
-            </Button>
+            <Button href={DONATE_LINK}>Donate</Button>
         </div>
     </Section>
     <the-fold></the-fold>

@@ -5,3 +5,5 @@ export const GITHUB_ACCOUNT = "https://github.com/FRC3636/frc-2025";
 export const CAD_MODEL =
     "https://cad.onshape.com/documents/91312b208aad8571797edb8e/w/f972da841b2dc7667c8171ec/e/01728691127e205a98aa4858";
 export const CONTACT_US = "mailto:frcteam3636@gmail.com";
+export const DONATE_LINK =
+    "https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ";
