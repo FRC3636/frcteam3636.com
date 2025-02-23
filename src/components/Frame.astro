@@ -24,6 +24,7 @@ type SourceProps =
     loop?: boolean;
     simple?: boolean;
     autoplay?: boolean;
+    startAt?: number;
 };
 export type Props = SourceProps & BaseProps & HTMLAttributes<"iframe">;
 
@@ -51,6 +52,9 @@ if ("videoId" in Astro.props) {
         if (Astro.props.simple) {
             src += `&controls=0`;
         }
+        if (Astro.props.startAt) {
+            src += `&start=${Astro.props.startAt}`;
+        }
     }
     allow ??=
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
@@ -60,7 +64,7 @@ if ("videoId" in Astro.props) {
 }
 ---
 
-<div class:list={[className, "frame-container"]} data-cover={cover}>
+<div class:list={[className, "frame-container"]} data-cover={cover} {...rest}>
     <iframe
         {src}
         {allow}

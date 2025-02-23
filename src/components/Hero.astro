@@ -15,10 +15,23 @@ const { scrollHref } = Astro.props;
 ---
 
 <div class="hero">
-    <Frame videoId="LXZsFiOZ7zQ" width={3840} height={2160} loop cover simple fixFOUC class="hero-video" />
+    <Frame
+        videoId="LXZsFiOZ7zQ"
+        width={3840}
+        height={2160}
+        loop
+        cover
+        simple
+        fixFOUC
+        startAt={26}
+        class="hero-video"
+    />
     <div class="hero-overlay">
         <div class="hero-details">
-            <Button href="https://youtu.be/LXZsFiOZ7zQ" theme="dark-transparent">
+            <Button
+                href="https://youtu.be/LXZsFiOZ7zQ"
+                theme="dark-transparent"
+            >
                 <Icon symbol={faYoutube} larger />
                 Watch
             </Button>
@@ -33,7 +46,7 @@ const { scrollHref } = Astro.props;
         </a>
     </div>
 </div>
-<the-fold />
+<the-fold></the-fold>
 
 <style lang="scss">
     .hero {
@@ -46,7 +59,8 @@ const { scrollHref } = Astro.props;
         background-color: var(--col-dark);
     }
 
-    .hero, h1 {
+    .hero,
+    h1 {
         color: var(--col-white);
     }
 
@@ -113,7 +127,6 @@ const { scrollHref } = Astro.props;
             text-decoration-color: var(--col-white);
         }
     }
-
 
     .hero-img {
         width: 100%;
