@@ -13,14 +13,49 @@ import type { HTMLAttributes } from "astro/types";
 type BaseProps = {
     width: number;
     height: number;
+    cover?: boolean;
+    /** Fixes Flash of Unstyled Content by hiding the frame before it has loaded */
+    fixFOUC?: boolean;
 };
-type SourceProps = { src: string } | { videoId: string };
+type SourceProps =
+    | { src: string }
+    | {
+    videoId: string;
+    loop?: boolean;
+    simple?: boolean;
+    autoplay?: boolean;
+    startAt?: number;
+};
 export type Props = SourceProps & BaseProps & HTMLAttributes<"iframe">;
 
-let { width, height, allow, allowfullscreen, src, ...rest } = Astro.props;
+let {
+    width,
+    height,
+    allow,
+    allowfullscreen,
+    src,
+    class: className,
+    cover,
+    fixFOUC,
+    ...rest
+} = Astro.props;
 
 if ("videoId" in Astro.props) {
-    src ??= `https://www.youtube-nocookie.com/embed/${Astro.props.videoId}?autoplay=1&mute=1`;
+    if (!src) {
+        src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(Astro.props.videoId)}?rel=0`;
+        if (Astro.props.autoplay ?? true) {
+            src += "&autoplay=1&mute=1";
+        }
+        if (Astro.props.loop) {
+            src += `&loop=1&playlist=${encodeURIComponent(Astro.props.videoId)}`;
+        }
+        if (Astro.props.simple) {
+            src += `&controls=0`;
+        }
+        if (Astro.props.startAt) {
+            src += `&start=${Astro.props.startAt}`;
+        }
+    }
     allow ??=
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     allowfullscreen ??= true;
@@ -29,34 +64,61 @@ if ("videoId" in Astro.props) {
 }
 ---
 
-<div class="frame-container">
+<div class:list={[className, "frame-container"]} data-cover={cover} {...rest}>
     <iframe
         {src}
         {allow}
         {allowfullscreen}
         referrerpolicy="strict-origin-when-cross-origin"
         loading="lazy"
-        {...rest}
-    />
+        data-no-fouc={fixFOUC}
+        {...rest}></iframe>
 </div>
 
 <style
     lang="scss"
     define:vars={{
         aspect: `${width / height}`,
-        "max-w": `${width}px`,
+        width: `${width}px`
     }}
 >
-    .frame-container {
-        max-width: var(--max-w);
-        width: 100%;
+    .frame-container:not([data-cover="true"]) {
         aspect-ratio: var(--aspect);
+        max-width: var(--width);
+        width: 100%;
+
+        // Grow to parent size
+        iframe {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
     }
 
-    // Grow to parent size
-    iframe {
-        width: 100%;
-        height: 100%;
-        background-color: black;
+    // First tried this, but you need to know the aspect ratio statically: https://codepen.io/JamesAlias/pen/QWovwgP
+    // Now using this: https://stackoverflow.com/a/79395341
+
+    .frame-container[data-cover="true"] {
+        container-type: inline-size;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        iframe {
+            min-width: max(calc(100cqh * var(--aspect)), 100vw);
+            aspect-ratio: var(--aspect);
+        }
     }
 </style>
+
+<script>
+    // Hide iframes that haven't loaded yet.
+    const frames = document.querySelectorAll<HTMLIFrameElement>(
+        "iframe[data-no-fouc=\"true\"]"
+    );
+    for (const frame of frames) {
+        frame.style.opacity = "0";
+        frame.onload = () => (frame.style.opacity = "1");
+    }
+</script>

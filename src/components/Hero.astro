@@ -1,8 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import Icon from "../components/Icon.astro";
 import hero from "../assets/robot-hero.jpg";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import Frame from "./Frame.astro";
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
 
 interface Props {
     scrollHref: string;
@@ -12,17 +15,29 @@ const { scrollHref } = Astro.props;
 ---
 
 <div class="hero">
-    <Image
-        src={hero}
-        widths={[900, 1200, 1400, 1800, hero.width]}
-        alt="Sun Tzu, the 2024 competition robot built by Generals Robotics, sits on a concrete surface in an outdoor setting. It features a sturdy black and blue frame adorned with stickers."
-        sizes="100vw"
-        class="hero-img full-size"
+    <Frame
+        videoId="GgYWqpkuCFM"
+        width={3840}
+        height={2160}
+        loop
+        cover
+        simple
+        fixFOUC
+        startAt={26}
+        class="hero-video"
     />
     <div class="hero-overlay">
         <div class="hero-details">
-            <h1>The Official Website of Generals Robotics</h1>
+            <Button
+                href="https://youtu.be/e5cw4i_LtoA"
+                theme="dark-transparent"
+            >
+                <Icon symbol={faYoutube} larger />
+                Watch
+            </Button>
         </div>
+    </div>
+    <div class="hero-overlay-btm">
         <a class="hero-scroll" href={scrollHref}>
             <p class="callout">Learn More</p>
             <div class="scroll-arrow">
@@ -31,16 +46,29 @@ const { scrollHref } = Astro.props;
         </a>
     </div>
 </div>
-<the-fold />
+<the-fold></the-fold>
+<br />
 
 <style lang="scss">
     .hero {
         position: relative;
     }
 
+    .hero-video {
+        height: 100svh;
+        width: 100%;
+        background-color: var(--col-dark);
+    }
+
     .hero,
     h1 {
         color: var(--col-white);
+    }
+
+    h2 {
+        color: var(--col-lgray);
+        font-weight: normal;
+        font-family: var(--font-subheading), sans-serif;
     }
 
     .hero-overlay {
@@ -55,16 +83,26 @@ const { scrollHref } = Astro.props;
         );
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: center;
         align-items: center;
     }
 
     .hero-details {
-        padding: 5vw 1rem 1rem;
+        padding: 40svh 1rem 1rem;
+    }
+
+    .hero-overlay-btm {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
 
     .hero-scroll {
-        padding-bottom: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -90,7 +128,6 @@ const { scrollHref } = Astro.props;
             text-decoration-color: var(--col-white);
         }
     }
-
 
     .hero-img {
         width: 100%;

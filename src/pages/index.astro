@@ -22,20 +22,6 @@ import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL } from "../links";
     <Hero scrollHref="#belowHero" />
     <main>
         <Section layout="row" align="spaced" id="below-hero">
-            <Column class="flexible">
-                <h2>2024 Season Recap</h2>
-                <p>
-                    Get a sneak peak of what we do here at Generals Robotics,
-                    Team 3636! Check out our other videos on the student-run <a
-                    href="https://www.youtube.com/@FRCTeam3636">YouTube</a
-                > account.
-                </p>
-            </Column>
-            <div class="flexible">
-                <Frame videoId="UEHhuMCoeP8" width={1920} height={892} />
-            </div>
-        </Section>
-        <Section theme="secondary" layout="row" align="spaced" id="about-us">
             <Image
                 src={aboutUsFlavor}
                 class="flavor-image"
@@ -64,6 +50,20 @@ import { BUILD_THREAD, PHOTO_ALBUM, GITHUB_ACCOUNT, CAD_MODEL } from "../links";
                     network of experienced mentors in the engineering industry.
                 </p>
             </Column>
+        </Section>
+        <Section layout="row" align="spaced" theme="secondary">
+            <Column class="flexible">
+                <h2>2024 Season Recap</h2>
+                <p>
+                    Get a sneak peak of what we do here at Generals Robotics,
+                    Team 3636! Check out our other videos on the student-run <a
+                    href="https://www.youtube.com/@FRCTeam3636">YouTube</a
+                > account.
+                </p>
+            </Column>
+            <div class="flexible">
+                <Frame videoId="UEHhuMCoeP8" width={1920} height={892} autoplay={false} />
+            </div>
         </Section>
         <Section layout="row" align="spaced">
             <Column>
