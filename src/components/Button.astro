@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-type Theme = "primary" | "secondary";
+type Theme = "primary" | "secondary" | "dark-transparent";
 interface Props extends HTMLAttributes<"a"> {
     theme?: Theme;
 }
@@ -30,8 +30,14 @@ const { theme = "secondary", ...rest } = Astro.props;
         // Layout
         display: inline-flex;
         gap: 10px;
-        align-items: baseline;
+        align-items: center;
         text-transform: capitalize;
+
+        &[data-theme="dark-transparent"] {
+            --primary: var(--col-white);
+            --bg-secondary: var(--col-dark);
+            background-color: color-mix(in srgb, var(--bg-secondary) 60%, transparent);
+        }
 
         &[data-theme="primary"] {
             background-color: var(--accent);

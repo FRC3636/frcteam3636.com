@@ -8,14 +8,15 @@ type IconWidth = "fixed" | "variable";
 interface Props extends HTMLAttributes<"span"> {
     symbol: IconDefinition | typeof import("*.svg").default;
     width?: IconWidth;
+    larger?: boolean;
 }
 
-const { symbol, width = "fixed", ...rest } = Astro.props;
+const { symbol, width = "fixed", larger, ...rest } = Astro.props;
 
 const Component = symbol;
 ---
 
-<span class:list={["icon", rest.class]} {...rest}>
+<span class:list={["icon", rest.class]} data-larger={larger} {...rest}>
     {
         "src" in symbol ? (
             <Component />
@@ -28,6 +29,10 @@ const Component = symbol;
 <style>
     .icon {
         display: contents;
+
+        &[data-larger="true"] {
+            font-size: 1.25em;
+        }
 
         > :not(.svg-inline--fa) {
             height: 0.8em;
