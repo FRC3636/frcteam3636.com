@@ -14,7 +14,7 @@ const { scrollHref } = Astro.props;
 
 <div class="hero">
     <Frame width={1920} height={1080} cover>
-        <video class="reveal-video" autoplay muted loop>
+        <video class="reveal-video" preload="auto" autoplay muted loop playsinline>
             <source type="video/webm" src="/assets/reveal/reveal.webm" />
             <source type="video/mp4" src="/assets/reveal/reveal.mp4" />
         </video>
