@@ -18,7 +18,7 @@ type BaseProps = {
     fixFOUC?: boolean;
 };
 type SourceProps =
-    | { src: string }
+    | { src?: string }
     | {
     videoId: string;
     loop?: boolean;
@@ -65,14 +65,16 @@ if ("videoId" in Astro.props) {
 ---
 
 <div class:list={[className, "frame-container"]} data-cover={cover} {...rest}>
-    <iframe
-        {src}
-        {allow}
-        {allowfullscreen}
-        referrerpolicy="strict-origin-when-cross-origin"
-        loading="lazy"
-        data-no-fouc={fixFOUC}
-        {...rest}></iframe>
+    <slot>
+        <iframe
+            {src}
+            {allow}
+            {allowfullscreen}
+            referrerpolicy="strict-origin-when-cross-origin"
+            loading="lazy"
+            data-no-fouc={fixFOUC}
+            {...rest}></iframe>
+    </slot>
 </div>
 
 <style
@@ -88,7 +90,7 @@ if ("videoId" in Astro.props) {
         width: 100%;
 
         // Grow to parent size
-        iframe {
+        :global(*) {
             width: 100%;
             height: 100%;
             background-color: black;
@@ -105,7 +107,7 @@ if ("videoId" in Astro.props) {
         align-items: center;
         overflow: hidden;
 
-        iframe {
+        :global(*) {
             min-width: max(calc(100cqh * var(--aspect)), 100vw);
             aspect-ratio: var(--aspect);
         }

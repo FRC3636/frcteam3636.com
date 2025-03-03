@@ -1,12 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import hero from "../assets/robot-hero.jpg";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import Frame from "./Frame.astro";
 import Button from "./Button.astro";
 import Icon from "./Icon.astro";
-
+import Frame from "./Frame.astro";
 interface Props {
     scrollHref: string;
 }
@@ -15,17 +13,12 @@ const { scrollHref } = Astro.props;
 ---
 
 <div class="hero">
-    <Frame
-        videoId="GgYWqpkuCFM"
-        width={3840}
-        height={2160}
-        loop
-        cover
-        simple
-        fixFOUC
-        startAt={26}
-        class="hero-video"
-    />
+    <Frame width={1920} height={1080} cover>
+        <video class="reveal-video" autoplay muted loop>
+            <source type="video/webm" src="/assets/reveal/reveal.webm" />
+            <source type="video/mp4" src="/assets/reveal/reveal.mp4" />
+        </video>
+    </Frame>
     <div class="hero-overlay">
         <div class="hero-details">
             <Button
@@ -150,6 +143,10 @@ const { scrollHref } = Astro.props;
         100% {
             transform: translateY(0);
         }
+    }
+
+    .reveal-video {
+        width: 100%;
     }
 </style>
 
