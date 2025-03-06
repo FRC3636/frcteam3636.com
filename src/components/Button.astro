@@ -2,13 +2,15 @@
 import type { HTMLAttributes } from "astro/types";
 
 type Theme = "primary" | "secondary" | "dark-transparent";
+type Size = "large" | "small";
 interface Props extends HTMLAttributes<"a"> {
     theme?: Theme;
+    size?: Size;
 }
 
-const { theme = "secondary", ...rest } = Astro.props;
+const { theme = "secondary", size = "large", class: className, ...rest } = Astro.props;
 ---
-<a class="button" target="_blank" data-theme={theme} {...rest}>
+<a class:list={["button", className]} target="_blank" data-theme={theme} data-size={size} {...rest}>
     <slot />
 </a>
 
@@ -17,9 +19,9 @@ const { theme = "secondary", ...rest } = Astro.props;
         // Styling
         color: var(--primary);
         background-color: var(--bg-secondary);
-        margin: 0.5rem;
-        padding: 0.75rem;
+        margin: 0.2rem;
         font-size: 1rem;
+        padding: 0.5rem;
         border-radius: 0.5rem;
         font-weight: bold;
         cursor: pointer;
@@ -46,10 +48,12 @@ const { theme = "secondary", ...rest } = Astro.props;
             border-color: transparent;
         }
 
-        @media (max-width: 800px) {
-            margin: 0.2rem;
-            font-size: 1rem;
-            padding: 0.5rem;
+        &[data-size="large"] {
+            @media (min-width: 800px) {
+                margin: 0.5rem;
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
         }
     }
 </style>

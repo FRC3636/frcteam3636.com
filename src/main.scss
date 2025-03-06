@@ -32,8 +32,13 @@
 
     --bg: var(--col-white);
     --bg-secondary: var(--col-lgray);
+
+    --border-primary: solid color-mix(in srgb, var(--primary) 10%, transparent) 1px;
     /* This is intended to be most prominent in dark mode to separate things colored with --bg-secondary from --bg. */
     --border-secondary: solid color-mix(in srgb, var(--col-white) 10%, transparent) 1px;
+
+    --shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
     --col-body: var(--col-dgray);
     --primary: var(--col-black);
     --accent: var(--col-blue);

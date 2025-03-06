@@ -7,3 +7,5 @@ export const CAD_MODEL =
 export const CONTACT_US = "mailto:frcteam3636@gmail.com";
 export const DONATE_LINK =
     "https://www.mypaynet.com/pay/for/General-Donations-to-Support-Robotics-Te/Sc0hFVS?mip=MedZ";
+export const CALENDAR =
+    "https://calendar.google.com/calendar/embed?src=ghsrobotics3636%40gmail.com&ctz=America%2FLos_Angeles";

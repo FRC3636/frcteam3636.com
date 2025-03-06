@@ -1,14 +1,15 @@
 ---
 import type { IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import Icon from "./Icon.astro"
+import type { HTMLAttributes } from "astro/types";
 
-export interface Props {
+export interface Props extends HTMLAttributes<"a"> {
     icon: IconDefinition;
     href: string;
     title: string;
 }
 
-const { icon, href, title } = Astro.props;
+const { icon, href, title, class: className, ...rest } = Astro.props;
 ---
 
 <a
@@ -17,7 +18,8 @@ const { icon, href, title } = Astro.props;
     aria-label={title}
     target="_blank"
     rel="noopener noreferrer"
-    class="social-link"
+    class:list={["social-link", className]}
+    {...rest}
 >
     <Icon symbol={icon} />
 </a>
@@ -32,7 +34,7 @@ const { icon, href, title } = Astro.props;
 
         font-size: 1.5rem;
 
-        padding: 0.25rem;
+        padding: 0.3rem;
 
         border: 2px solid var(--accent);
         color: var(--accent);
