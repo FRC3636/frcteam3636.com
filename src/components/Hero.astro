@@ -1,6 +1,6 @@
 ---
 import hero from "../assets/robot-hero.jpg";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faCircleDot } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import Button from "./Button.astro";
 import Icon from "./Icon.astro";
@@ -21,13 +21,20 @@ const { scrollHref } = Astro.props;
     </Frame>
     <div class="hero-overlay">
         <div class="hero-details">
-            <Button
-                href="https://youtu.be/e5cw4i_LtoA"
-                theme="dark-transparent"
-            >
-                <Icon symbol={faYoutube} larger />
-                Watch
-            </Button>
+            <div class="hero-links">
+                <Button
+                    href="https://youtu.be/e5cw4i_LtoA"
+                    theme="dark-transparent"
+                >
+                    <Icon symbol={faYoutube} larger />
+                    Robot Reveal
+                </Button>
+                <Button href="https://3636.live" theme="dark-transparent">
+                    <Icon symbol={faCircleDot} style={{ color: "#e71919" }} />
+                    Watch Live
+                </Button>
+            </div>
+            <p class="callout">Tune in on March 7th at 8:30 am</p>
         </div>
     </div>
     <div class="hero-overlay-btm">
@@ -82,6 +89,9 @@ const { scrollHref } = Astro.props;
 
     .hero-details {
         padding: 40svh 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-overlay-btm {
