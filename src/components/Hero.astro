@@ -22,16 +22,16 @@ const { scrollHref } = Astro.props;
     <div class="hero-overlay">
         <div class="hero-details">
             <div class="hero-links">
+                <Button href="https://3636.live" theme="primary" style={{ "--accent": "#e71919" }}>
+                    <Icon symbol={faCircleDot} />
+                    Watch Live
+                </Button>
                 <Button
                     href="https://youtu.be/e5cw4i_LtoA"
                     theme="dark-transparent"
                 >
                     <Icon symbol={faYoutube} larger />
                     Robot Reveal
-                </Button>
-                <Button href="https://3636.live" theme="dark-transparent">
-                    <Icon symbol={faCircleDot} style={{ color: "#e71919" }} />
-                    Watch Live
                 </Button>
             </div>
             <p class="callout">Tune in on March 7th at 8:30 am</p>
@@ -92,6 +92,12 @@ const { scrollHref } = Astro.props;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .hero-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .hero-overlay-btm {
