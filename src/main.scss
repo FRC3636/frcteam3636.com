@@ -5,9 +5,23 @@
 }
 
 @font-face {
+    font-family: "ITC Avant Garde Gothic Pro";
+    font-style: normal;
+    src: url(/fonts/ITC-Avant-Garde-Gothic-Pro-Regular.woff2);
+    font-display: swap;
+}
+
+@font-face {
     font-family: Montserrat;
     font-style: normal;
     src: url(/fonts/Montserrat-VF.woff2);
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    font-style: italic;
+    src: url(/fonts/Montserrat-Italic-VF.woff2);
     font-display: swap;
 }
 
@@ -20,9 +34,9 @@
     --col-lgray: #eeeeee;
     --col-dgray: #2d2a2b;
     --col-blue: #1d48a3;
-    --font-heading: "Loos", sans-serif;
-    --font-subheading: "Montserrat", sans-serif;
-    --font-body: "Montserrat", sans-serif;
+    --font-heading: "Loos", var(--font-body), sans-serif;
+    --font-subheading: "ITC Avant Garde Gothic Pro", var(--font-body), sans-serif;
+    --font-body: "Montserrat", system-ui, sans-serif;
     color-scheme: light dark;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
