@@ -1,0 +1,103 @@
+---
+import { type CollectionEntry, render } from 'astro:content';
+import Icon from "../Icon.astro";
+import Button from "../Button.astro";
+import firstLogo from "../../assets/first-logo.svg";
+
+export interface Props {
+    data: CollectionEntry<"events">,
+}
+
+const { data: event } = Astro.props;
+
+const { Content } = await render(event);
+---
+
+<li class="event-item">
+    <p class="event-tagline">
+        {event.data.date.toLocaleDateString("en-US", { dateStyle: "long" })}
+    </p>
+    <h2>
+        <a href={event.data.links.tba}>
+            {event.data.name}
+        </a>
+    </h2>
+    <div class="event-link-row">
+        {/* Opens Apple Maps on iOS, Google Maps on everything else */}
+        <a href=`https://maps.apple.com/?q=${event.data.location.coordinates}` class="event-subheading">
+            {event.data.location.name}
+        </a>
+        {
+            event.data.links.first &&
+            <Button href={event.data.links.first} class="first-logo" size="small">
+                <Icon symbol={firstLogo} />
+                Official Info
+            </Button>
+        }
+    </div>
+    <Content />
+</li>
+
+<style lang="scss">
+    .event-item {
+        padding: 1rem;
+        border: var(--border-primary);
+        border-radius: 0.5rem;
+        width: min(50ch, 80vw);
+        box-shadow: var(--shadow);
+
+        :global(h2) {
+            margin: 0;
+            font-size: 1.5em;
+            text-align: left;
+        }
+
+        :global(p) {
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        :global(*) {
+            // Prevent secondary colors blending into this element which is already
+            // using secondary colors.
+            --bg-secondary: var(--bg);
+            --border-secondary: var(--border-primary);
+        }
+    }
+
+    .event-link-row {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: space-between;
+        align-items: start;
+        margin: 0.1em 0;
+
+        @media (max-width: 600px) {
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        :global(a.button) {
+            flex-shrink: 0;
+        }
+    }
+
+    .event-subheading {
+        color: var(--col-body);
+        font-family: var(--font-subheading), sans-serif;
+        font-size: 0.9em;
+        opacity: 0.9;
+
+        &:not(:hover) {
+            text-decoration: none;
+        }
+    }
+
+    .event-tagline {
+        text-transform: uppercase;
+        font-style: italic;
+        font-size: 0.7em;
+        opacity: 0.75;
+    }
+</style>

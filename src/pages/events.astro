@@ -6,38 +6,11 @@ import { faTwitch } from "@fortawesome/free-brands-svg-icons";
 import Button from "../components/Button.astro";
 import Icon from "../components/Icon.astro";
 import { faCamera, faStream, faVideo } from "@fortawesome/free-solid-svg-icons";
-import firstLogo from "../assets/first-logo.svg";
+import { getCollection, render } from 'astro:content';
+import EventItem from "../components/events/EventItem.astro";
 
-interface Event {
-    name: string;
-    description: string;
-    location: {
-        name: string;
-        coordinates: string;
-    }
-    links: {
-        tba: string;
-        frcEvents?: string;
-    };
-}
-
-const events: Event[] = [
-    {
-        name: "PNW District Clackamas Academy Event",
-        description: "Our first event of the season, we ranked 1st out of 30 teams. " +
-            "We competed in the playoffs as the Captain of #1 Alliance and won the " +
-            "event after 17 consecutive victories. Our team remained undefeated " +
-            "throughout all two days of the competition.",
-        location: {
-            name: "1306 12th St, Oregon City, OR 97045, USA",
-            coordinates: "45.3562418,-122.5965714",
-        },
-        links: {
-            tba: "https://www.thebluealliance.com/event/2025orore",
-            frcEvents: "https://frc-events.firstinspires.org/2025/ORORE",
-        },
-    }
-];
+const events = await getCollection("events");
+events.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Article
@@ -59,29 +32,7 @@ const events: Event[] = [
     <Section theme="secondary">
         <ul class="event-list">
             {events.map((event) =>
-                <li class="event-item">
-                    <h2>
-                        <a href={event.links.tba}>
-                            {event.name}
-                        </a>
-                    </h2>
-                    <div class="event-links">
-                        {/* Opens Apple Maps on iOS, Google Maps on everything else */}
-                        <a href=`https://maps.apple.com/?q=${event.location.coordinates}` class="event-subheading">
-                            {event.location.name}
-                        </a>
-                        {
-                            event.links.frcEvents &&
-                            <Button href={event.links.frcEvents} class="first-logo" size="small">
-                                <Icon symbol={firstLogo} />
-                                Official Info
-                            </Button>
-                        }
-                    </div>
-                    <p>
-                        {event.description}
-                    </p>
-                </li>
+                <EventItem data={event} />
             )}
         </ul>
     </Section>
@@ -93,47 +44,6 @@ const events: Event[] = [
         padding: 0;
         display: flex;
         flex-direction: column;
-        box-shadow: var(--shadow);
-    }
-
-    .event-item {
-        padding: 1rem;
-        border: var(--border-primary);
-        border-radius: 0.5rem;
-        width: min(50ch, 80vw);
-
-        h2 {
-            margin: 0;
-            font-size: 1.5em;
-            text-align: left;
-        }
-
-        p {
-            font-size: 0.9em;
-            margin: 0;
-        }
-
-        :global(*) {
-            // Prevent secondary colors blending into this element which is already
-            // using secondary colors.
-            --bg-secondary: var(--bg);
-            --border-secondary: var(--border-primary);
-        }
-    }
-
-    .event-subheading {
-        color: var(--col-body);
-        font-family: var(--font-subheading), sans-serif;
-        font-size: 0.9em;
-
-        &:not(:hover) {
-            text-decoration: none;
-        }
-    }
-
-    .event-links {
-        display: flex;
-        gap: 0.75rem;
-        justify-content: space-between;
+        gap: 2rem;
     }
 </style>
