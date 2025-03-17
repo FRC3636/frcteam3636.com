@@ -1,7 +1,6 @@
 ---
-future: true
 name: PNW District Wilsonville Event
-date: March 21, 2025
+date: March 22, 2025
 location:
     name: 6800 SW Wilsonville Rd, Wilsonville, OR 97070, USA
     coordinates: 45.3071445,-122.7474636
