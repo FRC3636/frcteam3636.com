@@ -20,7 +20,7 @@ export const manifest: Partial<ManifestOptions> = {
     name: seoConfig.siteName, // Change this to your website's name.
     short_name: seoConfig.siteName, // Change this to your website's short name.
     description: seoConfig.description, // Change this to your websites description.
-    theme_color: "#1d48a3", // Change this to your primary color.
+    theme_color: "#283891", // Change this to your primary color.
     background_color: "#0a0a0a", // Change this to your background color.
     icons: [
         // https://maskable.app/editor
