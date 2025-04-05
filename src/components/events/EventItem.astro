@@ -16,15 +16,14 @@ const { data: event } = Astro.props;
 const { Content } = await render(event);
 
 const images = import.meta.glob<typeof import("*.jpg")>(
-    "../../events/*/*.{jpg,jpeg,png,webp}",
+    "/src/events/*/*.{jpg,jpeg,png,webp}",
     { eager: true },
 );
 
 let image: ImageMetadata | undefined;
 if (event.data.image) {
-
-    const imagePath = path.relative(
-        path.dirname(url.fileURLToPath(import.meta.url)),
+    const relativePath = path.relative(
+        path.resolve(event.filePath ?? "",  "../.." ),
         path.resolve(
             event.filePath ?? "",
             "..",
@@ -32,6 +31,7 @@ if (event.data.image) {
         ),
     )
         .replaceAll(path.sep, path.posix.sep);
+    const imagePath = path.posix.resolve("/src/events/", relativePath)
     console.log(images, imagePath);
     image = images[imagePath]?.default;
 }
