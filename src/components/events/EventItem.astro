@@ -3,6 +3,9 @@ import { type CollectionEntry, render } from 'astro:content';
 import Icon from "../Icon.astro";
 import Button from "../Button.astro";
 import firstLogo from "../../assets/first-logo.svg";
+import * as path from "node:path";
+import * as url from "node:url";
+import { Image } from "astro:assets";
 
 export interface Props {
     data: CollectionEntry<"events">,
@@ -11,9 +14,31 @@ export interface Props {
 const { data: event } = Astro.props;
 
 const { Content } = await render(event);
+
+const images = import.meta.glob<typeof import("*.jpg")>(
+    "../../events/*/*.{jpg,jpeg,png,webp}",
+    { eager: true },
+);
+
+let image: ImageMetadata | undefined;
+if (event.data.image) {
+
+    const imagePath = path.relative(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        path.resolve(
+            event.filePath ?? "",
+            "..",
+            event.data.image,
+        ),
+    )
+        .replaceAll(path.sep, path.posix.sep);
+    console.log(images, imagePath);
+    image = images[imagePath]?.default;
+}
 ---
 
 <li class="event-item">
+    {image && <Image src={image} alt="" width="600" />}
     <p class="event-tagline">
         {event.data.date.toLocaleDateString("en-US", { dateStyle: "long" })}
     </p>
@@ -45,6 +70,10 @@ const { Content } = await render(event);
         border-radius: 0.5rem;
         width: min(50ch, 80vw);
         box-shadow: var(--shadow);
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
 
         :global(h2) {
             margin: 0;
@@ -99,5 +128,10 @@ const { Content } = await render(event);
         font-style: italic;
         font-size: 0.7em;
         opacity: 0.75;
+    }
+
+    img {
+        align-self: center;
+        margin-bottom: 0.5rem;
     }
 </style>

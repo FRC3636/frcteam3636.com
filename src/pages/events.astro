@@ -8,9 +8,35 @@ import Icon from "../components/Icon.astro";
 import { faCamera, faStream, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { getCollection, render } from 'astro:content';
 import EventItem from "../components/events/EventItem.astro";
+import type { DataEntry, CollectionEntry } from "astro:content";
+import path from "node:path";
 
 const events = await getCollection("events");
 events.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+interface Year {
+    year: number;
+    events: [CollectionEntry<"events">];
+}
+
+// Group events by year so we can make headings
+
+const years: Year[] = [];
+for (const event of events) {
+    if (!event.filePath) throw new Error("Missing event file path");
+
+    const folderName =  path.basename(path.dirname(event.filePath));
+    const year = Number(folderName);
+
+    if (years[0]?.year === year) {
+        years[0].events.push(event);
+    } else {
+        years.unshift({
+            year,
+            events: [event],
+        });
+    }
+}
 ---
 
 <Article
@@ -26,16 +52,19 @@ events.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
         </p>
         <Button href="https://3636.live">
             <Icon symbol={faVideo} />
-            Watch Now
+            Join Livestream
         </Button>
     </Section>
-    <Section theme="secondary">
-        <ul class="event-list">
-            {events.map((event) =>
-                <EventItem data={event} />
-            )}
-        </ul>
-    </Section>
+    {years.map(({ year, events }) =>
+        <Section theme="secondary">
+            <h2 class="year" id={String(year)}>{year} Season</h2>
+            <ul class="event-list">
+                {events.map((event) =>
+                    <EventItem data={event} />
+                )}
+            </ul>
+        </Section>
+    )}
 </Article>
 
 <style lang="scss">
@@ -45,5 +74,9 @@ events.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
         display: flex;
         flex-direction: column;
         gap: 2rem;
+    }
+
+    .year {
+        margin: 1rem 0 0 0;
     }
 </style>

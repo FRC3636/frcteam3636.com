@@ -14,6 +14,7 @@ const events = defineCollection({
             tba: z.string(),
             first: z.string().optional(),
         }),
+        image: z.string().optional(),
     }),
 });
 

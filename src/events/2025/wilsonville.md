@@ -7,8 +7,8 @@ location:
 links:
     tba: https://www.thebluealliance.com/event/2025orwil
     first: https://frc-events.firstinspires.org/2025/orwil
+image: ./wilsonville.jpg
 ---
 
-This will be our second event of the season.
-
-See you there!
+We ranked seventh in Qualifications and were the first pick of Team Mean Machine's alliance.
+Our team was eliminated in Round 3 of the playoffs.

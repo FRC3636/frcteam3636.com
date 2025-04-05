@@ -7,6 +7,7 @@ location:
 links:
     tba: https://www.thebluealliance.com/event/2025orore
     first: https://frc-events.firstinspires.org/2025/ORORE
+image: ./clackamas-academy.jpg
 ---
 
 Our first event of the season, we ranked first out of 30 teams.
