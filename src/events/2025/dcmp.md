@@ -7,6 +7,8 @@ location:
 links:
     tba: https://www.thebluealliance.com/event/2025pncmp
     first: https://frc-events.firstinspires.org/2025/pncmp
+image: ./dcmp.jpg
 ---
 
-In our third event of the season, we will compete against the top teams in the Pacific Northwest.
+In our third event of the season, we competed against the top teams in the Pacific Northwest.
+Ultimately we were not selected for the playoffs resulting in the conclusion of our 2025 season.
