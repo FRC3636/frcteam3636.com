@@ -4,9 +4,6 @@ import { manifest } from "./utils/seo";
 
 // https://astro.build/config
 export default defineConfig({
-    experimental: {
-        responsiveImages: true,
-    },
     integrations: [
         // sentry({
         //     dsn: "https://d9846d5e2c53aec80163141f77a9cabb@o1106499.ingest.sentry.io/4506118179586048",
