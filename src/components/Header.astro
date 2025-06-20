@@ -2,7 +2,7 @@
 import LogoLink from "./LogoLink.astro";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Icon from "../components/Icon.astro";
-import { CALENDAR } from "../links";
+import { CALENDAR, CONTACT_US } from "../links";
 
 export type HeaderTheme = "normal" | "transparent";
 interface Props {
@@ -31,6 +31,7 @@ const { theme } = Astro.props;
         <a href="/sponsors">Sponsorship</a>
         <a href="/events">Events</a>
         <a href={CALENDAR} target="_blank">Calendar</a>
+        <a href={CONTACT_US} target="_blank">Contact Us</a>
     </nav>
 </header>
 

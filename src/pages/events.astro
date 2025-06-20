@@ -1,14 +1,10 @@
 ---
 
 import Section from "../components/Section.astro";
-import Article from "../layouts/Article.astro";
-import { faTwitch } from "@fortawesome/free-brands-svg-icons";
-import Button from "../components/Button.astro";
-import Icon from "../components/Icon.astro";
-import { faCamera, faStream, faVideo } from "@fortawesome/free-solid-svg-icons";
-import { getCollection, render } from 'astro:content';
+import Article from "../layouts/Article.astro";;
+import { getCollection } from 'astro:content';
 import EventItem from "../components/events/EventItem.astro";
-import type { DataEntry, CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import path from "node:path";
 
 const events = await getCollection("events");
