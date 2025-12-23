@@ -5,8 +5,6 @@ import { SEO } from "astro-seo";
 import "modern-normalize/modern-normalize.css";
 import "../main.scss";
 import { seoConfig, manifest } from "../../utils/seo.ts";
-import "modern-normalize/modern-normalize.css";
-import "../main.scss";
 
 export interface Props {
     /**
@@ -47,6 +45,7 @@ library.add(fas, fab);
 
 <html lang="en">
     <head>
+        <meta charset="utf-8" />
         <SEO
             title={title}
             description={description}
@@ -68,7 +67,6 @@ library.add(fas, fab);
                     description,
                 },
             }}
-            charset="utf-8"
         />
         <link
             rel="preload"
@@ -101,7 +99,7 @@ library.add(fas, fab);
         <link
             rel="alternate"
             type="application/json+oembed"
-            href=`${seoConfig.baseURL}/oembed.json`
+            href={`${seoConfig.baseURL}/oembed.json`}
         />
         <meta
             name="google-site-verification"
